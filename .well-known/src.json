@@ -1,4 +1,65 @@
 {
   "name": "@ryanatkn/zzz",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "modules": {
+    "./package.json": {
+      "path": "package.json",
+      "declarations": []
+    },
+    "./Hud_Root.svelte": {
+      "path": "Hud_Root.svelte",
+      "declarations": []
+    },
+    "./hud.svelte.js": {
+      "path": "hud.svelte.ts",
+      "declarations": [
+        {
+          "name": "hud_context",
+          "kind": "variable"
+        }
+      ]
+    },
+    "./zzz_data.svelte.js": {
+      "path": "zzz_data.svelte.ts",
+      "declarations": [
+        {
+          "name": "Zzz_Data_Json",
+          "kind": "type"
+        },
+        {
+          "name": "Zzz_Data",
+          "kind": "class"
+        }
+      ]
+    },
+    "./Zzz_Main.svelte": {
+      "path": "Zzz_Main.svelte",
+      "declarations": []
+    },
+    "./Zzz_Root.svelte": {
+      "path": "Zzz_Root.svelte",
+      "declarations": []
+    },
+    "./zzz.svelte.js": {
+      "path": "zzz.svelte.ts",
+      "declarations": [
+        {
+          "name": "zzz_context",
+          "kind": "variable"
+        },
+        {
+          "name": "Zzz_Options",
+          "kind": "type"
+        },
+        {
+          "name": "Zzz_Json",
+          "kind": "type"
+        },
+        {
+          "name": "Zzz",
+          "kind": "class"
+        }
+      ]
+    }
+  }
 }
