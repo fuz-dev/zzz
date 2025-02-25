@@ -1,9 +1,35 @@
 /* global stylesheet imported by `src/routes/+layout.svelte */
 
-/*
-
-:root {
-  --some_stylish_property: 100%;
+.click_effect_scale:hover {
+	transform: scale(1.08);
+}
+.click_effect_scale:active {
+	transform: scale(1.14);
 }
 
-*/
+/* TODO refactor with `Text_Icon`*/
+.icon_xs {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2ch;
+	margin-right: var(--space_xs);
+	text-align: center;
+}
+
+/* TODO name? */
+.h3_ui {
+	margin-bottom: var(--space_lg);
+	font-weight: 400;
+}
+
+/* TODO upstream */
+.compact {
+	--input_height: 2.6rem;
+	--min_height: 2.6rem;
+	--border_radius: var(--radius_xs);
+}
+
+.dormant {
+	opacity: 0.6;
+}
