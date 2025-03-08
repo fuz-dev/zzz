@@ -6,6 +6,9 @@
 	import Tome_Section from '@ryanatkn/fuz/Tome_Section.svelte';
 	import Tome_Section_Header from '@ryanatkn/fuz/Tome_Section_Header.svelte';
 	import {get_tome_by_name} from '@ryanatkn/fuz/tome.js';
+	import Props_Table from '$lib/Props_Table.svelte';
+	import type {Prop_Definition} from '$lib/svelte_helpers.js';
+	import Tome_Link from '@ryanatkn/fuz/Tome_Link.svelte';
 
 	const tome = get_tome_by_name('popover');
 
@@ -13,6 +16,74 @@
 	const demo_action = () => {
 		alert('Action triggered!');
 	};
+
+	// Props data for the component
+	const popover_props: Array<Prop_Definition> = [
+		{
+			name: 'open',
+			type: 'boolean',
+			default_value: 'false',
+			description: 'Initial open state',
+		},
+		{
+			name: 'position',
+			type: 'BasicPosition',
+			default_value: "'bottom'",
+			description: 'Position of the popover',
+		},
+		{
+			name: 'popover_attrs',
+			type: "SvelteHTMLElements['div']",
+			default_value: '{}',
+			description: 'HTML attributes for popover',
+		},
+		{
+			name: 'onchange',
+			type: '(open: boolean) => void',
+			default_value: 'undefined',
+			description: 'Called on state change',
+		},
+		{
+			name: 'trigger',
+			type: 'Snippet<[open: boolean, toggle: () => void]>',
+			default_value: 'required',
+			description: 'Trigger element content',
+		},
+		{
+			name: 'children',
+			type: 'Snippet<[{is_open: boolean; toggle: () => void}]>',
+			default_value: 'required',
+			description: 'Popover content',
+		},
+		{
+			name: 'bg',
+			type: 'string | null',
+			default_value: "'bg_3'",
+			description: 'Background class or null',
+		},
+	];
+
+	// Methods data for the component
+	const popover_methods: Array<Prop_Definition> = [
+		{
+			name: 'open()',
+			type: 'Method',
+			default_value: '-',
+			description: 'Opens the popover programmatically',
+		},
+		{
+			name: 'close()',
+			type: 'Method',
+			default_value: '-',
+			description: 'Closes the popover programmatically',
+		},
+		{
+			name: 'toggle()',
+			type: 'Method',
+			default_value: '-',
+			description: "Toggles the popover's open state",
+		},
+	];
 </script>
 
 <Tome_Content {tome}>
@@ -233,62 +304,7 @@
 	<Tome_Section>
 		<Tome_Section_Header text="Props" />
 
-		<div class="table_wrapper">
-			<table class="w_100">
-				<thead>
-					<tr>
-						<th>Prop</th>
-						<th>Type</th>
-						<th>Default</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>open</td>
-						<td>boolean</td>
-						<td>false</td>
-						<td>Initial open state</td>
-					</tr>
-					<tr>
-						<td>position</td>
-						<td>BasicPosition</td>
-						<td>'bottom'</td>
-						<td>Position of the popover</td>
-					</tr>
-					<tr>
-						<td>popover_attrs</td>
-						<td>SvelteHTMLElements['div']</td>
-						<td>&lbrace;}</td>
-						<td>HTML attributes for popover</td>
-					</tr>
-					<tr>
-						<td>onchange</td>
-						<td>(open: boolean) => void</td>
-						<td>undefined</td>
-						<td>Called on state change</td>
-					</tr>
-					<tr>
-						<td>trigger</td>
-						<td>Snippet{'<'}[open: boolean, toggle: () => void]></td>
-						<td>required</td>
-						<td>Trigger element content</td>
-					</tr>
-					<tr>
-						<td>children</td>
-						<td>Snippet{'<'}[{'{'}is_open: boolean; toggle: () => void}]></td>
-						<td>required</td>
-						<td>Popover content</td>
-					</tr>
-					<tr>
-						<td>bg</td>
-						<td>string | null</td>
-						<td>'bg_3'</td>
-						<td>Background class or null</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Props_Table props={popover_props} />
 	</Tome_Section>
 
 	<Tome_Section>
@@ -298,30 +314,7 @@
 			The Popover component exposes the following methods via the <code>controls</code> export:
 		</p>
 
-		<div class="method_table table_wrapper">
-			<table class="w_100">
-				<thead>
-					<tr>
-						<th>Method</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>open()</code></td>
-						<td>Opens the popover programmatically</td>
-					</tr>
-					<tr>
-						<td><code>close()</code></td>
-						<td>Closes the popover programmatically</td>
-					</tr>
-					<tr>
-						<td><code>toggle()</code></td>
-						<td>Toggles the popover's open state</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Props_Table props={popover_methods} title="Available Methods" />
 
 		<div class="mt_md">
 			<Code
@@ -363,6 +356,18 @@ controls.toggle(); // Toggle state`}
 					Add <code>aria-label</code> to trigger buttons that don't have visible text
 				</li>
 				<li>Consider adding <code>aria-expanded</code> to trigger elements</li>
+			</ul>
+		</div>
+
+		<div class="bg_2 p_sm radius_sm mt_sm">
+			<h4 class="size_sm mb_xs">Related Components</h4>
+			<ul class="mb_0">
+				<li>
+					<Tome_Link name="tooltip" /> - For simpler, non-interactive informational content
+				</li>
+				<li>
+					<Tome_Link name="positioned_element" /> - The core positioning utility used by popovers
+				</li>
 			</ul>
 		</div>
 	</Tome_Section>

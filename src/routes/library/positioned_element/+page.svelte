@@ -6,6 +6,8 @@
 	import Tome_Section_Header from '@ryanatkn/fuz/Tome_Section_Header.svelte';
 	import Tome_Link from '@ryanatkn/fuz/Tome_Link.svelte';
 	import {get_tome_by_name} from '@ryanatkn/fuz/tome.js';
+	import Props_Table from '$lib/Props_Table.svelte';
+	import type {Prop_Definition} from '$lib/svelte_helpers.js';
 
 	const tome = get_tome_by_name('positioned_element');
 
@@ -13,9 +15,120 @@
 	let show_example_1 = $state(false);
 	let show_example_2 = $state(false);
 	let show_example_3 = $state(false);
-	let show_example_4 = $state(false);
-	let show_example_5 = $state(false);
+	let show_example_5 = $state(false); // TODO fix numbering, skips 4
 	let show_example_6 = $state(false);
+
+	// Props data for the component
+	const positioned_element_props: Array<Prop_Definition> = [
+		{
+			name: 'show',
+			type: 'boolean',
+			default_value: 'false',
+			description: 'Whether to show the element',
+		},
+		{
+			name: 'position',
+			type: 'Position',
+			default_value: "'right'",
+			description: 'Position relative to container',
+		},
+		{
+			name: 'align',
+			type: 'Alignment',
+			default_value: "'center'",
+			description: 'Alignment along the edge',
+		},
+		{
+			name: 'offset',
+			type: 'string',
+			default_value: 'undefined',
+			description: 'Distance from positioned edge',
+		},
+		{
+			name: 'duration',
+			type: 'number',
+			default_value: '120',
+			description: 'Animation duration in ms',
+		},
+		{
+			name: 'element_attrs',
+			type: "SvelteHTMLElements['div']",
+			default_value: '{}',
+			description: 'HTML attributes for element',
+		},
+		{
+			name: 'class',
+			type: 'string',
+			default_value: "''",
+			description: 'Additional CSS class',
+		},
+		{
+			name: 'pointer_events',
+			type: 'boolean',
+			default_value: 'true',
+			description: 'Allow pointer events',
+		},
+		{
+			name: 'children',
+			type: 'Snippet',
+			default_value: 'undefined',
+			description: 'Content to render',
+		},
+		{
+			name: 'trigger',
+			type: 'Snippet',
+			default_value: 'undefined',
+			description: 'Optional trigger content',
+		},
+		{
+			name: 'bg',
+			type: 'string | null',
+			default_value: "'bg_3'",
+			description: 'Background class or null',
+		},
+	];
+
+	const position_types_props: Array<Prop_Definition> = [
+		{
+			name: 'BasicPosition',
+			type: "'left' | 'right' | 'top' | 'bottom'",
+			default_value: '-',
+			description: 'Cardinal directions',
+		},
+		{
+			name: 'Position',
+			type: "BasicPosition | 'center' | 'overlay'",
+			default_value: '-',
+			description: 'Extended position options',
+		},
+		{
+			name: 'Alignment',
+			type: "'start' | 'center' | 'end'",
+			default_value: '-',
+			description: 'Alignment along positioned edge',
+		},
+	];
+
+	const helper_functions_props: Array<Prop_Definition> = [
+		{
+			name: 'generate_position_styles()',
+			type: 'Function',
+			default_value: '-',
+			description: 'Generates CSS positioning styles',
+		},
+		{
+			name: 'styles_to_string()',
+			type: 'Function',
+			default_value: '-',
+			description: 'Converts styles object to CSS string',
+		},
+		{
+			name: 'get_position_style()',
+			type: 'Function',
+			default_value: '-',
+			description: 'Generates complete CSS style string',
+		},
+	];
 </script>
 
 <Tome_Content {tome}>
@@ -221,86 +334,7 @@
 	<Tome_Section>
 		<Tome_Section_Header text="Props" />
 
-		<div class="table_wrapper">
-			<table class="w_100">
-				<thead>
-					<tr>
-						<th>Prop</th>
-						<th>Type</th>
-						<th>Default</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>show</td>
-						<td>boolean</td>
-						<td>false</td>
-						<td>Whether to show the element</td>
-					</tr>
-					<tr>
-						<td>position</td>
-						<td>Position</td>
-						<td>'right'</td>
-						<td>Position relative to container</td>
-					</tr>
-					<tr>
-						<td>align</td>
-						<td>Alignment</td>
-						<td>'center'</td>
-						<td>Alignment along the edge</td>
-					</tr>
-					<tr>
-						<td>offset</td>
-						<td>string</td>
-						<td>undefined</td>
-						<td>Distance from positioned edge</td>
-					</tr>
-					<tr>
-						<td>duration</td>
-						<td>number</td>
-						<td>120</td>
-						<td>Animation duration in ms</td>
-					</tr>
-					<tr>
-						<td>element_attrs</td>
-						<td>SvelteHTMLElements['div']</td>
-						<td>&lbrace;}</td>
-						<td>HTML attributes for element</td>
-					</tr>
-					<tr>
-						<td>class</td>
-						<td>string</td>
-						<td>''</td>
-						<td>Additional CSS class</td>
-					</tr>
-					<tr>
-						<td>pointer_events</td>
-						<td>boolean</td>
-						<td>true</td>
-						<td>Allow pointer events</td>
-					</tr>
-					<tr>
-						<td>children</td>
-						<td>Snippet</td>
-						<td>undefined</td>
-						<td>Content to render</td>
-					</tr>
-					<tr>
-						<td>trigger</td>
-						<td>Snippet</td>
-						<td>undefined</td>
-						<td>Optional trigger content</td>
-					</tr>
-					<tr>
-						<td>bg</td>
-						<td>string | null</td>
-						<td>'bg_3'</td>
-						<td>Background class or null</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Props_Table props={positioned_element_props} />
 	</Tome_Section>
 
 	<Tome_Section>
@@ -312,34 +346,7 @@
 			>:
 		</p>
 
-		<div class="table_wrapper mb_sm">
-			<table class="w_100">
-				<thead>
-					<tr>
-						<th>Type</th>
-						<th>Values</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>BasicPosition</td>
-						<td>'left' | 'right' | 'top' | 'bottom'</td>
-						<td>Cardinal directions</td>
-					</tr>
-					<tr>
-						<td>Position</td>
-						<td>BasicPosition | 'center' | 'overlay'</td>
-						<td>Extended position options</td>
-					</tr>
-					<tr>
-						<td>Alignment</td>
-						<td>'start' | 'center' | 'end'</td>
-						<td>Alignment along positioned edge</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Props_Table props={position_types_props} title="Position Types" />
 
 		<Code
 			content={`// Types from $lib/position_helpers.js
@@ -354,40 +361,7 @@ export type Alignment = 'start' | 'center' | 'end';`}
 
 		<p>The component uses these utility functions for positioning:</p>
 
-		<div class="table_wrapper mb_sm">
-			<table class="w_100">
-				<thead>
-					<tr>
-						<th>Function</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>generate_position_styles()</code></td>
-						<td>Generates CSS positioning styles</td>
-					</tr>
-					<tr>
-						<td><code>styles_to_string()</code></td>
-						<td>Converts styles object to CSS string</td>
-					</tr>
-					<tr>
-						<td><code>get_position_style()</code></td>
-						<td>Generates complete CSS style string</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<Code
-			content={`// Example usage:
-import {get_position_style} from '$lib/position_helpers.js';
-
-// Generate CSS style string
-const style = get_position_style('top', 'center', '10px');
-// Result: "position: absolute; z-index: 10; transform-origin: center; 
-// top: calc(-1 * 10px); left: 50%; transform: translateX(-50%)"`}
-		/>
+		<Props_Table props={helper_functions_props} title="Helper Functions" />
 	</Tome_Section>
 
 	<Tome_Section>
@@ -429,7 +403,7 @@ const style = get_position_style('top', 'center', '10px');
 <style>
 	.example_grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(var(--width_sm), 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 		gap: var(--space_md);
 	}
 

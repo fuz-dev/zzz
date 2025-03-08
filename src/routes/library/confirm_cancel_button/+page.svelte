@@ -7,6 +7,8 @@
 	import Tome_Link from '@ryanatkn/fuz/Tome_Link.svelte';
 	import {get_tome_by_name} from '@ryanatkn/fuz/tome.js';
 	import {GLYPH_REMOVE, GLYPH_CHECK, GLYPH_CANCEL} from '$lib/glyphs.js';
+	import Props_Table from '$lib/Props_Table.svelte';
+	import type {Prop_Definition} from '$lib/svelte_helpers.js';
 
 	const tome = get_tome_by_name('confirm_cancel_button');
 
@@ -17,6 +19,76 @@
 	const demo_cancel = () => {
 		alert('Action cancelled!');
 	};
+
+	// Props data for the Confirm_Cancel_Button component
+	const confirm_cancel_button_props: Array<Prop_Definition> = [
+		{
+			name: 'onconfirm',
+			type: '() => void',
+			default_value: 'required',
+			description: 'Function called when confirmed',
+		},
+		{
+			name: 'oncancel',
+			type: '() => void',
+			default_value: 'undefined',
+			description: 'Optional cancel callback',
+		},
+		{
+			name: 'attrs',
+			type: "SvelteHTMLElements['button']",
+			default_value: '{}',
+			description: 'HTML attributes for button',
+		},
+		{
+			name: 'position',
+			type: 'BasicPosition',
+			default_value: "'left'",
+			description: 'Position of action buttons',
+		},
+		{
+			name: 'confirm_button',
+			type: 'Snippet',
+			default_value: 'undefined',
+			description: 'Custom confirm button content',
+		},
+		{
+			name: 'cancel_button',
+			type: 'Snippet',
+			default_value: 'undefined',
+			description: 'Custom cancel button content',
+		},
+		{
+			name: 'confirm_attrs',
+			type: "SvelteHTMLElements['button']",
+			default_value: '{}',
+			description: 'HTML attributes for confirm button',
+		},
+		{
+			name: 'cancel_attrs',
+			type: "SvelteHTMLElements['button']",
+			default_value: '{}',
+			description: 'HTML attributes for cancel button',
+		},
+		{
+			name: 'children',
+			type: 'Snippet',
+			default_value: 'undefined',
+			description: 'Content for main button',
+		},
+		{
+			name: 'close_on_outside_click',
+			type: 'boolean',
+			default_value: 'true',
+			description: 'Close when clicking outside',
+		},
+		{
+			name: 'popover_bg',
+			type: 'string | null',
+			default_value: "'bg_3'",
+			description: 'Background class or null',
+		},
+	];
 </script>
 
 <Tome_Content {tome}>
@@ -136,86 +208,7 @@
 	<Tome_Section>
 		<Tome_Section_Header text="Props" />
 
-		<div class="table_wrapper">
-			<table class="w_100">
-				<thead>
-					<tr>
-						<th>Prop</th>
-						<th>Type</th>
-						<th>Default</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>onconfirm</td>
-						<td>() => void</td>
-						<td>required</td>
-						<td>Function called when confirmed</td>
-					</tr>
-					<tr>
-						<td>oncancel</td>
-						<td>() => void</td>
-						<td>undefined</td>
-						<td>Optional cancel callback</td>
-					</tr>
-					<tr>
-						<td>attrs</td>
-						<td>SvelteHTMLElements['button']</td>
-						<td>&lbrace;}</td>
-						<td>HTML attributes for button</td>
-					</tr>
-					<tr>
-						<td>position</td>
-						<td>BasicPosition</td>
-						<td>'left'</td>
-						<td>Position of action buttons</td>
-					</tr>
-					<tr>
-						<td>confirm_button</td>
-						<td>Snippet</td>
-						<td>undefined</td>
-						<td>Custom confirm button content</td>
-					</tr>
-					<tr>
-						<td>cancel_button</td>
-						<td>Snippet</td>
-						<td>undefined</td>
-						<td>Custom cancel button content</td>
-					</tr>
-					<tr>
-						<td>confirm_attrs</td>
-						<td>SvelteHTMLElements['button']</td>
-						<td>&lbrace;}</td>
-						<td>HTML attributes for confirm button</td>
-					</tr>
-					<tr>
-						<td>cancel_attrs</td>
-						<td>SvelteHTMLElements['button']</td>
-						<td>&lbrace;}</td>
-						<td>HTML attributes for cancel button</td>
-					</tr>
-					<tr>
-						<td>children</td>
-						<td>Snippet</td>
-						<td>undefined</td>
-						<td>Content for main button</td>
-					</tr>
-					<tr>
-						<td>close_on_outside_click</td>
-						<td>boolean</td>
-						<td>true</td>
-						<td>Close when clicking outside</td>
-					</tr>
-					<tr>
-						<td>popover_bg</td>
-						<td>string | null</td>
-						<td>'bg_3'</td>
-						<td>Background class or null</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Props_Table props={confirm_cancel_button_props} />
 	</Tome_Section>
 
 	<Tome_Section>

@@ -6,8 +6,57 @@
 	import Tome_Section from '@ryanatkn/fuz/Tome_Section.svelte';
 	import Tome_Section_Header from '@ryanatkn/fuz/Tome_Section_Header.svelte';
 	import {get_tome_by_name} from '@ryanatkn/fuz/tome.js';
+	import Props_Table from '$lib/Props_Table.svelte';
+	import type {Prop_Definition} from '$lib/svelte_helpers.js';
+	import Tome_Link from '@ryanatkn/fuz/Tome_Link.svelte';
 
 	const tome = get_tome_by_name('tooltip');
+
+	// Props data for the component
+	const tooltip_props: Array<Prop_Definition> = [
+		{
+			name: 'position',
+			type: 'BasicPosition',
+			default_value: "'top'",
+			description: 'Position of the tooltip',
+		},
+		{
+			name: 'delay',
+			type: 'number',
+			default_value: '80',
+			description: 'Delay in ms before showing',
+		},
+		{
+			name: 'tooltip_attrs',
+			type: "SvelteHTMLElements['div']",
+			default_value: '{}',
+			description: 'HTML attributes for tooltip',
+		},
+		{
+			name: 'content',
+			type: 'Snippet',
+			default_value: 'required',
+			description: 'Content for the tooltip',
+		},
+		{
+			name: 'bg',
+			type: 'string | null',
+			default_value: "'bg_3'",
+			description: 'Background class or null',
+		},
+		{
+			name: 'id',
+			type: 'string',
+			default_value: 'auto-generated',
+			description: 'ID for ARIA attributes',
+		},
+		{
+			name: 'children',
+			type: 'Snippet',
+			default_value: 'undefined',
+			description: 'Trigger element content',
+		},
+	];
 </script>
 
 <Tome_Content {tome}>
@@ -163,62 +212,7 @@
 	<Tome_Section>
 		<Tome_Section_Header text="Props" />
 
-		<div class="table_wrapper">
-			<table class="w_100">
-				<thead>
-					<tr>
-						<th>Prop</th>
-						<th>Type</th>
-						<th>Default</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>position</td>
-						<td>BasicPosition</td>
-						<td>'top'</td>
-						<td>Position of the tooltip</td>
-					</tr>
-					<tr>
-						<td>delay</td>
-						<td>number</td>
-						<td>80</td>
-						<td>Delay in ms before showing</td>
-					</tr>
-					<tr>
-						<td>tooltip_attrs</td>
-						<td>SvelteHTMLElements['div']</td>
-						<td>&lbrace;}</td>
-						<td>HTML attributes for tooltip</td>
-					</tr>
-					<tr>
-						<td>content</td>
-						<td>Snippet</td>
-						<td>required</td>
-						<td>Content for the tooltip</td>
-					</tr>
-					<tr>
-						<td>bg</td>
-						<td>string | null</td>
-						<td>'bg_3'</td>
-						<td>Background class or null</td>
-					</tr>
-					<tr>
-						<td>id</td>
-						<td>string</td>
-						<td>auto-generated</td>
-						<td>ID for ARIA attributes</td>
-					</tr>
-					<tr>
-						<td>children</td>
-						<td>Snippet</td>
-						<td>undefined</td>
-						<td>Trigger element content</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Props_Table props={tooltip_props} />
 	</Tome_Section>
 
 	<Tome_Section>
@@ -232,6 +226,18 @@
 			<li>Works with keyboard focus events</li>
 			<li>Avoids capturing keyboard focus</li>
 		</ul>
+
+		<div class="bg_2 p_sm radius_sm mt_sm">
+			<h4 class="size_sm mb_xs">Related Components</h4>
+			<ul class="mb_0">
+				<li>
+					<Tome_Link name="popover" /> - For interactive content requiring user interaction
+				</li>
+				<li>
+					<Tome_Link name="positioned_element" /> - The core positioning utility used by tooltips
+				</li>
+			</ul>
+		</div>
 	</Tome_Section>
 </Tome_Content>
 
@@ -250,27 +256,6 @@
 		justify-content: center;
 		align-items: center;
 		padding: var(--space_sm);
-	}
-
-	.table_wrapper {
-		overflow-x: auto;
-	}
-
-	table {
-		border-collapse: collapse;
-		font-size: var(--size_sm);
-	}
-
-	th,
-	td {
-		padding: var(--space_xs);
-		text-align: left;
-		border-bottom: 1px solid var(--border_color_1);
-	}
-
-	th {
-		font-weight: 600;
-		background-color: var(--bg_color_2);
 	}
 
 	code {
