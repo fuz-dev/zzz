@@ -15,11 +15,17 @@
 .bg {
 	background-color: var(--bg);
 }
+.bg_1 {
+	background-color: var(--bg_1);
+}
 .bg_c_1 {
 	background-color: var(--color_c_1);
 }
 .bg_e_1 {
 	background-color: var(--color_e_1);
+}
+.bg_h_1 {
+	background-color: var(--color_h_1);
 }
 .block {
 	display: block;

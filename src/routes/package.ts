@@ -236,6 +236,11 @@ export const package_json = {
 			types: './dist/diskfiles.svelte.d.ts',
 			default: './dist/diskfiles.svelte.js',
 		},
+		'./Double_Button.svelte': {
+			types: './dist/Double_Button.svelte.d.ts',
+			svelte: './dist/Double_Button.svelte',
+			default: './dist/Double_Button.svelte',
+		},
 		'./Error_Message.svelte': {
 			types: './dist/Error_Message.svelte.d.ts',
 			svelte: './dist/Error_Message.svelte',
@@ -325,6 +330,11 @@ export const package_json = {
 		},
 		'./model.svelte.js': {types: './dist/model.svelte.d.ts', default: './dist/model.svelte.js'},
 		'./models.svelte.js': {types: './dist/models.svelte.d.ts', default: './dist/models.svelte.js'},
+		'./Native_Popover.svelte': {
+			types: './dist/Native_Popover.svelte.d.ts',
+			svelte: './dist/Native_Popover.svelte',
+			default: './dist/Native_Popover.svelte',
+		},
 		'./Nav_Link.svelte': {
 			types: './dist/Nav_Link.svelte.d.ts',
 			svelte: './dist/Nav_Link.svelte',
@@ -336,6 +346,25 @@ export const package_json = {
 			types: './dist/Ping_Form.svelte.d.ts',
 			svelte: './dist/Ping_Form.svelte',
 			default: './dist/Ping_Form.svelte',
+		},
+		'./Popover_Target.svelte': {
+			types: './dist/Popover_Target.svelte.d.ts',
+			svelte: './dist/Popover_Target.svelte',
+			default: './dist/Popover_Target.svelte',
+		},
+		'./Popover.svelte': {
+			types: './dist/Popover.svelte.d.ts',
+			svelte: './dist/Popover.svelte',
+			default: './dist/Popover.svelte',
+		},
+		'./position_helpers.js': {
+			types: './dist/position_helpers.d.ts',
+			default: './dist/position_helpers.js',
+		},
+		'./Positioned_Element.svelte': {
+			types: './dist/Positioned_Element.svelte.d.ts',
+			svelte: './dist/Positioned_Element.svelte',
+			default: './dist/Positioned_Element.svelte',
 		},
 		'./prompt_helpers.js': {
 			types: './dist/prompt_helpers.d.ts',
@@ -452,6 +481,11 @@ export const package_json = {
 		'./tape_types.js': {types: './dist/tape_types.d.ts', default: './dist/tape_types.js'},
 		'./tape.svelte.js': {types: './dist/tape.svelte.d.ts', default: './dist/tape.svelte.js'},
 		'./test.task.js': {types: './dist/test.task.d.ts', default: './dist/test.task.js'},
+		'./Tooltip.svelte': {
+			types: './dist/Tooltip.svelte.d.ts',
+			svelte: './dist/Tooltip.svelte',
+			default: './dist/Tooltip.svelte',
+		},
 		'./ui.svelte.js': {types: './dist/ui.svelte.d.ts', default: './dist/ui.svelte.js'},
 		'./Xml_Attribute_Editor.svelte': {
 			types: './dist/Xml_Attribute_Editor.svelte.d.ts',
@@ -624,6 +658,7 @@ export const src_json = {
 				{name: 'Diskfiles', kind: 'class'},
 			],
 		},
+		'./Double_Button.svelte': {path: 'Double_Button.svelte', declarations: []},
 		'./Error_Message.svelte': {path: 'Error_Message.svelte', declarations: []},
 		'./External_Link_Symbol.svelte': {path: 'External_Link_Symbol.svelte', declarations: []},
 		'./External_Link.svelte': {path: 'External_Link.svelte', declarations: []},
@@ -631,7 +666,9 @@ export const src_json = {
 		'./glyphs.js': {
 			path: 'glyphs.ts',
 			declarations: [
+				{name: 'GLYPH_CHECK', kind: 'variable'},
 				{name: 'GLYPH_REMOVE', kind: 'variable'},
+				{name: 'GLYPH_CANCEL', kind: 'variable'},
 				{name: 'GLYPH_DRAG', kind: 'variable'},
 				{name: 'GLYPH_COPY', kind: 'variable'},
 				{name: 'GLYPH_PASTE', kind: 'variable'},
@@ -741,6 +778,7 @@ export const src_json = {
 				{name: 'Models', kind: 'class'},
 			],
 		},
+		'./Native_Popover.svelte': {path: 'Native_Popover.svelte', declarations: []},
 		'./Nav_Link.svelte': {path: 'Nav_Link.svelte', declarations: []},
 		'./ollama.js': {
 			path: 'ollama.ts',
@@ -754,6 +792,19 @@ export const src_json = {
 		},
 		'./path.js': {path: 'path.ts', declarations: [{name: 'to_root_path', kind: 'function'}]},
 		'./Ping_Form.svelte': {path: 'Ping_Form.svelte', declarations: []},
+		'./Popover_Target.svelte': {path: 'Popover_Target.svelte', declarations: []},
+		'./Popover.svelte': {path: 'Popover.svelte', declarations: []},
+		'./position_helpers.js': {
+			path: 'position_helpers.ts',
+			declarations: [
+				{name: 'Position', kind: 'type'},
+				{name: 'Alignment', kind: 'type'},
+				{name: 'generate_position_styles', kind: 'function'},
+				{name: 'styles_to_string', kind: 'function'},
+				{name: 'get_position_style', kind: 'function'},
+			],
+		},
+		'./Positioned_Element.svelte': {path: 'Positioned_Element.svelte', declarations: []},
 		'./prompt_helpers.js': {
 			path: 'prompt_helpers.ts',
 			declarations: [
@@ -909,6 +960,7 @@ export const src_json = {
 				{name: 'task', kind: 'variable'},
 			],
 		},
+		'./Tooltip.svelte': {path: 'Tooltip.svelte', declarations: []},
 		'./ui.svelte.js': {
 			path: 'ui.svelte.ts',
 			declarations: [

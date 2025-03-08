@@ -1,99 +1,124 @@
 <script lang="ts">
-	import {scale} from 'svelte/transition';
 	import type {SvelteHTMLElements} from 'svelte/elements';
 	import type {Snippet} from 'svelte';
-
+	import {scale} from 'svelte/transition';
 	import {GLYPH_REMOVE} from '$lib/glyphs.js';
 
 	interface Props {
+		/** Callback when confirmed */
 		onclick: () => void;
+		/** Attributes for the main button */
 		attrs?: SvelteHTMLElements['button'];
-		button?: Snippet<[confirming: boolean, toggle: () => void]>;
+		/** Attributes for the confirmation button */
 		confirm_button_attrs?: SvelteHTMLElements['button'];
+		/** Children to render inside the main button */
 		children?: Snippet<[confirming: boolean]>;
+		/** Position hint using CSS classes */
+		position?: 'left' | 'right' | 'top' | 'bottom';
 	}
-	const {onclick, children, button, attrs, confirm_button_attrs}: Props = $props();
 
-	if (children && button) {
-		console.warn('Confirm_Button has both children and button defined - button takes precedence');
-	}
+	const {onclick, children, attrs, confirm_button_attrs, position = 'right'}: Props = $props();
 
 	let confirming = $state(false);
-	const toggle = () => (confirming = !confirming);
+	const toggle = () => {
+		if (attrs?.disabled) return;
+		confirming = !confirming;
+	};
 
-	// TODO BLOCK probably replace the remove button with an edit button that also changes the name to be an editable input,
-	// and the remove button expands from the edit button, and there's also a save button
-
-	// TODO BLOCK make the active state visible on the button when `confirming=true`, but `selected` is too visually heavy
-
-	// TODO changing the font size works if there's no children, but that's a weird difference - the UX is broken for custom buttons because they change size when the font size changes
-
-	// TODO add contextmenu behavior to dismiss the confirmation button
-
-	// This hides the confirmation button when the button is disabled.
-	// TODO do it more declaratively without the effect and instead use derived?
-	// But then `confirming` would need to be split into `confirming`
-	// with either `confirming_open` or `final_confirming`?
+	// Hide confirmation when button is disabled
 	$effect.pre(() => {
 		if (attrs?.disabled) {
 			confirming = false;
 		}
 	});
 
+	const handle_confirm = () => {
+		confirming = false;
+		onclick();
+	};
+
 	const c = $derived(attrs?.class);
+
+	const handle_toggle = () => {
+		toggle();
+	};
 </script>
 
-<!-- I did the ternary below because Svelte treats `undefined` `class:` directive values as `false`, so they override the attribute classes -->
-<!-- eslint-disable svelte/prefer-class-directive -->
+<div class="confirm_button_wrapper">
+	<button
+		type="button"
+		onclick={handle_toggle}
+		class:confirming
+		{...attrs}
+		class:plain={!children && !confirming && !c?.includes('plain')}
+		class:icon_button={!children && !c?.includes('icon_button')}
+		class="{c} {!children &&
+		confirming &&
+		!c?.includes(c?.includes('compact') ? 'size_xs' : 'size_sm')
+			? c?.includes('compact')
+				? 'size_xs'
+				: 'size_sm'
+			: ''}"
+	>
+		{#if children}{@render children(confirming)}{:else}{GLYPH_REMOVE}{/if}
+	</button>
 
-<!-- TODO the class detection is hacky, probably move to props -->
-
-<div class="relative">
-	{#if button}
-		{@render button(confirming, toggle)}
-	{:else}
-		<button
-			type="button"
-			onclick={toggle}
-			class:confirming
-			{...attrs}
-			class="{c} {!children && !c?.includes('icon_button') ? 'icon_button' : ''} {!children &&
-			!confirming &&
-			!c?.includes('plain')
-				? 'plain'
-				: ''} {!children &&
-			confirming &&
-			!c?.includes(c.includes('compact') ? 'size_xs' : 'size_sm')
-				? c?.includes('compact')
-					? 'size_xs'
-					: 'size_sm'
-				: ''}"
-		>
-			{#if children}{@render children(confirming)}{:else}{GLYPH_REMOVE}{/if}
-		</button>
-	{/if}
 	{#if confirming}
-		<button
-			type="button"
-			class="color_c absolute icon_button bg_c_1"
-			style:left="calc(-1 * var(--input_height))"
-			style:top="0"
-			style:transform-origin="right"
-			style:z-index="10"
-			onclick={() => {
-				confirming = false;
-				onclick();
-			}}
-			in:scale={{duration: 80}}
-			out:scale={{duration: 200}}
-			{...confirm_button_attrs}
-		>
-			<div class="icon">{GLYPH_REMOVE}</div>
-		</button>
+		<div class="confirm_popover position_{position}">
+			<button
+				type="button"
+				class="color_c icon_button bg_c_1"
+				onclick={handle_confirm}
+				{...confirm_button_attrs}
+				in:scale={{duration: 80}}
+				out:scale={{duration: 200}}
+			>
+				<div class="icon">{GLYPH_REMOVE}</div>
+			</button>
+		</div>
 	{/if}
 </div>
 
 <style>
+	.confirm_button_wrapper {
+		position: relative;
+		display: inline-flex;
+	}
+
+	.confirm_popover {
+		position: absolute;
+		padding: var(--space_xs2);
+		z-index: 10;
+	}
+
+	.position_left {
+		left: calc(-1 * var(--input_height));
+		top: 50%;
+		transform: translateY(-50%);
+		transform-origin: right;
+	}
+
+	.position_right {
+		right: calc(-1 * var(--input_height));
+		top: 50%;
+		transform: translateY(-50%);
+		transform-origin: left;
+	}
+
+	.position_top {
+		top: calc(-1 * var(--input_height));
+		left: 50%;
+		transform: translateX(-50%);
+		transform-origin: bottom;
+	}
+
+	.position_bottom {
+		bottom: calc(-1 * var(--input_height));
+		left: 50%;
+		transform: translateX(-50%);
+		transform-origin: top;
+	}
+
 	.icon {
 		transform-origin: center;
 		transition: transform var(--duration_1);

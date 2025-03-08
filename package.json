@@ -277,6 +277,11 @@
       "types": "./dist/diskfiles.svelte.d.ts",
       "default": "./dist/diskfiles.svelte.js"
     },
+    "./Double_Button.svelte": {
+      "types": "./dist/Double_Button.svelte.d.ts",
+      "svelte": "./dist/Double_Button.svelte",
+      "default": "./dist/Double_Button.svelte"
+    },
     "./Error_Message.svelte": {
       "types": "./dist/Error_Message.svelte.d.ts",
       "svelte": "./dist/Error_Message.svelte",
@@ -384,6 +389,11 @@
       "types": "./dist/models.svelte.d.ts",
       "default": "./dist/models.svelte.js"
     },
+    "./Native_Popover.svelte": {
+      "types": "./dist/Native_Popover.svelte.d.ts",
+      "svelte": "./dist/Native_Popover.svelte",
+      "default": "./dist/Native_Popover.svelte"
+    },
     "./Nav_Link.svelte": {
       "types": "./dist/Nav_Link.svelte.d.ts",
       "svelte": "./dist/Nav_Link.svelte",
@@ -401,6 +411,25 @@
       "types": "./dist/Ping_Form.svelte.d.ts",
       "svelte": "./dist/Ping_Form.svelte",
       "default": "./dist/Ping_Form.svelte"
+    },
+    "./Popover_Target.svelte": {
+      "types": "./dist/Popover_Target.svelte.d.ts",
+      "svelte": "./dist/Popover_Target.svelte",
+      "default": "./dist/Popover_Target.svelte"
+    },
+    "./Popover.svelte": {
+      "types": "./dist/Popover.svelte.d.ts",
+      "svelte": "./dist/Popover.svelte",
+      "default": "./dist/Popover.svelte"
+    },
+    "./position_helpers.js": {
+      "types": "./dist/position_helpers.d.ts",
+      "default": "./dist/position_helpers.js"
+    },
+    "./Positioned_Element.svelte": {
+      "types": "./dist/Positioned_Element.svelte.d.ts",
+      "svelte": "./dist/Positioned_Element.svelte",
+      "default": "./dist/Positioned_Element.svelte"
     },
     "./prompt_helpers.js": {
       "types": "./dist/prompt_helpers.d.ts",
@@ -536,6 +565,11 @@
     "./test.task.js": {
       "types": "./dist/test.task.d.ts",
       "default": "./dist/test.task.js"
+    },
+    "./Tooltip.svelte": {
+      "types": "./dist/Tooltip.svelte.d.ts",
+      "svelte": "./dist/Tooltip.svelte",
+      "default": "./dist/Tooltip.svelte"
     },
     "./ui.svelte.js": {
       "types": "./dist/ui.svelte.d.ts",

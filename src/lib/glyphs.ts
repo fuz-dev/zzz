@@ -1,10 +1,18 @@
+export const GLYPH_CHECK = '✓';
 export const GLYPH_REMOVE = '⨉'; // ⨉ ✕ 🗙 ⤫ ⤬
+export const GLYPH_CANCEL = '⦸'; // ⦸ ⨂ ⊝ ⏻ ⊘
 export const GLYPH_DRAG = '≡'; // ≡ ☰ ☷
 export const GLYPH_COPY = '⧉';
 export const GLYPH_PASTE = '⎌'; // ⧈ ⎗ ⎘ ⎙
 // export const GLYPH_EDIT = '✎'; // ✎ ✏ ✐ ✑ ✒
 // export const GLYPH_ADD = '⊞'; // ⊞ ⧉ ⧈
 // export const GLYPH_MOVE = '⧈';
+
+// Arrow glyphs for UI state indicators
+export const GLYPH_ARROW_UP = '▲';
+export const GLYPH_ARROW_DOWN = '▼';
+export const GLYPH_ARROW_LEFT = '◀';
+export const GLYPH_ARROW_RIGHT = '▶';
 
 export const GLYPH_CHAT = '⌸';
 export const GLYPH_TAPE = '☷';

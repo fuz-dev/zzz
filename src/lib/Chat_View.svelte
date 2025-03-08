@@ -11,12 +11,24 @@
 	import Model_Selector from '$lib/Model_Selector.svelte';
 	import Chat_Tape from '$lib/Chat_Tape.svelte';
 	import {zzz_context} from '$lib/zzz.svelte.js';
-	import {GLYPH_TAPE, GLYPH_PROMPT, GLYPH_REMOVE, GLYPH_PASTE, GLYPH_CHAT} from '$lib/glyphs.js';
+	import {
+		GLYPH_TAPE,
+		GLYPH_PROMPT,
+		GLYPH_REMOVE,
+		GLYPH_PASTE,
+		GLYPH_CHAT,
+		GLYPH_CHECK,
+		GLYPH_ARROW_UP,
+		GLYPH_ARROW_DOWN,
+	} from '$lib/glyphs.js';
 	import {zzz_config} from '$lib/zzz_config.js';
 	import Clear_Restore_Button from '$lib/Clear_Restore_Button.svelte';
 	import Bit_Stats from '$lib/Bit_Stats.svelte';
 	import Prompt_List from '$lib/Prompt_List.svelte';
 	import Tape_List from '$lib/Tape_List.svelte';
+	import Double_Button from '$lib/Double_Button.svelte';
+	import Tooltip from '$lib/Tooltip.svelte';
+	import Popover from '$lib/Popover.svelte';
 
 	const zzz = zzz_context.get();
 
@@ -70,8 +82,6 @@
 	// TODO BLOCK maybe a mode that allows duplicates by holding a key like shift, but otherwise only setting up 1 tape per model?
 
 	// TODO BLOCK custom buttons section - including quick local, smartest all, all, etc
-
-	// TODO BLOCK remove all tapes needs to open to the right of the button
 </script>
 
 <div class="flex_1 h_100 flex align_items_start">
@@ -172,12 +182,47 @@
 				/>
 			</div>
 			<div class="mt_lg">
-				<Confirm_Button
-					onclick={() => chat.remove_all_tapes()}
+				<Double_Button
+					onconfirm={() => chat.remove_all_tapes()}
 					attrs={{disabled: !count, class: 'plain'}}
+					position="right"
 				>
 					{GLYPH_REMOVE} <span class="ml_xs">remove all tapes</span>
-				</Confirm_Button>
+				</Double_Button>
+
+				<!-- Updated Tooltip usage with proper a11y support -->
+				<Tooltip text="Remove all tapes from this chat" position="top">
+					<button type="button" class="plain icon_button ml_md">{GLYPH_REMOVE}</button>
+				</Tooltip>
+
+				<!-- Example Popover usage -->
+				<Popover position="bottom">
+					{#snippet trigger(is_open, toggle)}
+						<button type="button" class="plain ml_md" onclick={toggle}>
+							Actions <small class="size_xs ml_sm"
+								>{is_open ? GLYPH_ARROW_UP : GLYPH_ARROW_DOWN}</small
+							>
+						</button>
+					{/snippet}
+
+					{#snippet children(params)}
+						<div class="column gap_xs w_100">
+							<button
+								type="button"
+								class="plain w_100 text_align_left"
+								onclick={() => {
+									chat.remove_all_tapes();
+									params.toggle(); // Close the popover after action
+								}}
+							>
+								{GLYPH_REMOVE} Remove all tapes
+							</button>
+							<button type="button" class="plain w_100 text_align_left">
+								{GLYPH_CHECK} Another action
+							</button>
+						</div>
+					{/snippet}
+				</Popover>
 			</div>
 			<!-- TODO duplicate tape button -->
 			<ul class="tapes unstyled mt_lg">
@@ -207,6 +252,7 @@
 							<Confirm_Button
 								onclick={() => zzz.chats.selected && zzz.chats.remove(zzz.chats.selected)}
 								attrs={{title: `delete chat "${zzz.chats.selected.name}"`}}
+								position="left"
 							/>
 						</div>
 						<small>{zzz.chats.selected.id}</small>
