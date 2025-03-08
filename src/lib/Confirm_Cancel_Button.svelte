@@ -2,8 +2,8 @@
 	import type {SvelteHTMLElements} from 'svelte/elements';
 	import type {Snippet} from 'svelte';
 	import {scale} from 'svelte/transition';
-
 	import {GLYPH_CHECK, GLYPH_CANCEL} from '$lib/glyphs.js';
+	import {type BasicPosition} from '$lib/position_helpers.js';
 
 	/**
 	 * A button that shows confirm/cancel buttons when clicked
@@ -16,7 +16,7 @@
 		/** Attributes for the main button */
 		attrs?: SvelteHTMLElements['button'];
 		/** Position hint using CSS classes */
-		position?: 'left' | 'right' | 'top' | 'bottom';
+		position?: BasicPosition;
 		/** Custom implementation for confirm button */
 		confirm_button?: Snippet;
 		/** Custom implementation for cancel button */
@@ -27,18 +27,24 @@
 		cancel_attrs?: SvelteHTMLElements['button'];
 		/** Children to render in the main button */
 		children?: Snippet;
+		/** Close when clicking outside (default true) */
+		close_on_outside_click?: boolean;
+		/** Background color class for popover (set to null for transparent) */
+		popover_bg?: string | null;
 	}
 
 	const {
 		onconfirm,
 		oncancel,
-		attrs,
-		position = 'right',
+		attrs = {},
+		position = 'left',
 		confirm_button,
 		cancel_button,
-		confirm_attrs,
-		cancel_attrs,
+		confirm_attrs = {},
+		cancel_attrs = {},
 		children,
+		close_on_outside_click = true,
+		popover_bg = 'bg_3',
 	}: Props = $props();
 
 	let active = $state(false);
@@ -64,9 +70,25 @@
 		if (attrs?.disabled) return;
 		active = !active;
 	};
+
+	// Handle outside clicks
+	const handle_document_click = (e: MouseEvent) => {
+		if (!active || !close_on_outside_click) return;
+
+		const wrapper = document.querySelector('.confirm_cancel_button_wrapper');
+		if (!wrapper) return;
+
+		if (wrapper.contains(e.target as Node)) {
+			return;
+		}
+
+		active = false;
+	};
 </script>
 
-<div class="double_button_wrapper">
+<svelte:document onclick={handle_document_click} />
+
+<div class="confirm_cancel_button_wrapper">
 	<button type="button" onclick={toggle} class:active {...attrs}>
 		{#if children}
 			{@render children()}
@@ -75,7 +97,7 @@
 
 	{#if active}
 		<div
-			class="action_popover position_{position}"
+			class="action_popover position_{position} {popover_bg || ''}"
 			in:scale={{duration: 150}}
 			out:scale={{duration: 150}}
 		>
@@ -111,7 +133,7 @@
 </div>
 
 <style>
-	.double_button_wrapper {
+	.confirm_cancel_button_wrapper {
 		position: relative;
 		display: inline-flex;
 	}

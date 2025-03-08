@@ -1,7 +1,12 @@
 /**
- * Standard position options for UI elements
+ * Basic position options for UI elements (cardinal directions)
  */
-export type Position = 'left' | 'right' | 'top' | 'bottom' | 'overlay' | 'center';
+export type BasicPosition = 'left' | 'right' | 'top' | 'bottom';
+
+/**
+ * Extended position options including overlay and center
+ */
+export type Position = BasicPosition | 'overlay' | 'center';
 
 /**
  * Alignment options for positioned elements
@@ -11,13 +16,13 @@ export type Alignment = 'start' | 'center' | 'end';
 /**
  * Generates CSS positioning styles for UI elements
  *
- * @param anchor - Where to position the element ('left', 'right', etc.)
- * @param align - Alignment along the anchor edge ('start', 'center', 'end')
- * @param offset - Distance from the anchor (CSS value)
+ * @param position - Where to position the element ('left', 'right', etc.)
+ * @param align - Alignment along the position edge ('start', 'center', 'end')
+ * @param offset - Distance from the position (CSS value)
  * @returns CSS styles as a Record
  */
 export const generate_position_styles = (
-	anchor: Position = 'center',
+	position: Position = 'center',
 	align: Alignment = 'center',
 	offset = 'var(--input_height)',
 ): Record<string, string> => {
@@ -27,7 +32,7 @@ export const generate_position_styles = (
 		'transform-origin': 'center',
 	};
 
-	switch (anchor) {
+	switch (position) {
 		case 'left':
 			styles.left = `calc(-1 * ${offset})`;
 			styles.top = align === 'center' ? '50%' : align === 'start' ? '0' : 'auto';
@@ -86,7 +91,7 @@ export const styles_to_string = (styles: Record<string, string>): string =>
  * Generate a complete CSS style string for positioning elements
  */
 export const get_position_style = (
-	anchor: Position = 'center',
+	position: Position = 'center',
 	align: Alignment = 'center',
 	offset = 'var(--input_height)',
-): string => styles_to_string(generate_position_styles(anchor, align, offset));
+): string => styles_to_string(generate_position_styles(position, align, offset));

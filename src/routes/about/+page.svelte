@@ -8,6 +8,7 @@
 
 	import {pkg_context} from '$routes/pkg.js';
 	import External_Link from '$lib/External_Link.svelte';
+	import {base} from '$app/paths';
 
 	const pkg = pkg_context.get();
 
@@ -212,11 +213,9 @@
 			author, and I expect it to evolve chaotically alongside its cohort of AI-informed web
 			software, with the goal of converging with the herd on the many specific choices that improve
 			the ecosystem's interoperability. Your input is highly valued to keep things on track and
-			fun—see the
-			<External_Link href="https://github.com/ryanatkn/zzz/issues">issues</External_Link>
-			and
-			<External_Link href="https://github.com/ryanatkn/zzz/discussions">discussions</External_Link>
-			and find me on
+			fun—see the issues and discussions on the
+			<External_Link href="https://github.com/ryanatkn/zzz">repo</External_Link>, the
+			<a href="{base}/docs">docs</a>, and find me on
 			<External_Link href="https://bsky.app/profile/ryanatkn.com">Bluesky</External_Link>.
 		</p>
 	</section>

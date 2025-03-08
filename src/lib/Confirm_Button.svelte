@@ -3,6 +3,7 @@
 	import type {Snippet} from 'svelte';
 	import {scale} from 'svelte/transition';
 	import {GLYPH_REMOVE} from '$lib/glyphs.js';
+	import {type BasicPosition} from '$lib/position_helpers.js';
 
 	interface Props {
 		/** Callback when confirmed */
@@ -14,10 +15,22 @@
 		/** Children to render inside the main button */
 		children?: Snippet<[confirming: boolean]>;
 		/** Position hint using CSS classes */
-		position?: 'left' | 'right' | 'top' | 'bottom';
+		position?: BasicPosition;
+		/** Close when clicking outside (default true) */
+		close_on_outside_click?: boolean;
+		/** Background color class for popover (set to null for transparent) */
+		popover_bg?: string | null;
 	}
 
-	const {onclick, children, attrs, confirm_button_attrs, position = 'right'}: Props = $props();
+	const {
+		onclick,
+		children,
+		attrs = {},
+		confirm_button_attrs = {},
+		position = 'left',
+		close_on_outside_click = true,
+		popover_bg = 'bg_3',
+	}: Props = $props();
 
 	let confirming = $state(false);
 	const toggle = () => {
@@ -39,16 +52,29 @@
 
 	const c = $derived(attrs?.class);
 
-	const handle_toggle = () => {
-		toggle();
+	// Handle outside clicks
+	const handle_document_click = (e: MouseEvent) => {
+		if (!confirming || !close_on_outside_click) return;
+
+		const wrapper = document.querySelector('.confirm_button_wrapper');
+		if (!wrapper) return;
+
+		if (wrapper.contains(e.target as Node)) {
+			return;
+		}
+
+		confirming = false;
 	};
 </script>
+
+<svelte:document onclick={handle_document_click} />
 
 <div class="confirm_button_wrapper">
 	<button
 		type="button"
-		onclick={handle_toggle}
+		onclick={toggle}
 		class:confirming
+		class:pressed={confirming}
 		{...attrs}
 		class:plain={!children && !confirming && !c?.includes('plain')}
 		class:icon_button={!children && !c?.includes('icon_button')}
@@ -64,7 +90,7 @@
 	</button>
 
 	{#if confirming}
-		<div class="confirm_popover position_{position}">
+		<div class="confirm_popover position_{position} {popover_bg || ''}">
 			<button
 				type="button"
 				class="color_c icon_button bg_c_1"

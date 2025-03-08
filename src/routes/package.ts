@@ -144,6 +144,11 @@ export const package_json = {
 			svelte: './dist/Confirm_Button.svelte',
 			default: './dist/Confirm_Button.svelte',
 		},
+		'./Confirm_Cancel_Button.svelte': {
+			types: './dist/Confirm_Cancel_Button.svelte.d.ts',
+			svelte: './dist/Confirm_Cancel_Button.svelte',
+			default: './dist/Confirm_Cancel_Button.svelte',
+		},
 		'./constants.js': {types: './dist/constants.d.ts', default: './dist/constants.js'},
 		'./Control_Panel.svelte': {
 			types: './dist/Control_Panel.svelte.d.ts',
@@ -236,11 +241,6 @@ export const package_json = {
 			types: './dist/diskfiles.svelte.d.ts',
 			default: './dist/diskfiles.svelte.js',
 		},
-		'./Double_Button.svelte': {
-			types: './dist/Double_Button.svelte.d.ts',
-			svelte: './dist/Double_Button.svelte',
-			default: './dist/Double_Button.svelte',
-		},
 		'./Error_Message.svelte': {
 			types: './dist/Error_Message.svelte.d.ts',
 			svelte: './dist/Error_Message.svelte',
@@ -330,11 +330,6 @@ export const package_json = {
 		},
 		'./model.svelte.js': {types: './dist/model.svelte.d.ts', default: './dist/model.svelte.js'},
 		'./models.svelte.js': {types: './dist/models.svelte.d.ts', default: './dist/models.svelte.js'},
-		'./Native_Popover.svelte': {
-			types: './dist/Native_Popover.svelte.d.ts',
-			svelte: './dist/Native_Popover.svelte',
-			default: './dist/Native_Popover.svelte',
-		},
 		'./Nav_Link.svelte': {
 			types: './dist/Nav_Link.svelte.d.ts',
 			svelte: './dist/Nav_Link.svelte',
@@ -500,6 +495,11 @@ export const package_json = {
 		'./xml.js': {types: './dist/xml.d.ts', default: './dist/xml.js'},
 		'./zod_helpers.js': {types: './dist/zod_helpers.d.ts', default: './dist/zod_helpers.js'},
 		'./zzz_config.js': {types: './dist/zzz_config.d.ts', default: './dist/zzz_config.js'},
+		'./Zzz_Docs.svelte': {
+			types: './dist/Zzz_Docs.svelte.d.ts',
+			svelte: './dist/Zzz_Docs.svelte',
+			default: './dist/Zzz_Docs.svelte',
+		},
 		'./Zzz_Root.svelte': {
 			types: './dist/Zzz_Root.svelte.d.ts',
 			svelte: './dist/Zzz_Root.svelte',
@@ -608,6 +608,7 @@ export const src_json = {
 			],
 		},
 		'./Confirm_Button.svelte': {path: 'Confirm_Button.svelte', declarations: []},
+		'./Confirm_Cancel_Button.svelte': {path: 'Confirm_Cancel_Button.svelte', declarations: []},
 		'./constants.js': {
 			path: 'constants.ts',
 			declarations: [{name: 'XML_TAG_NAME_DEFAULT', kind: 'variable'}],
@@ -658,7 +659,6 @@ export const src_json = {
 				{name: 'Diskfiles', kind: 'class'},
 			],
 		},
-		'./Double_Button.svelte': {path: 'Double_Button.svelte', declarations: []},
 		'./Error_Message.svelte': {path: 'Error_Message.svelte', declarations: []},
 		'./External_Link_Symbol.svelte': {path: 'External_Link_Symbol.svelte', declarations: []},
 		'./External_Link.svelte': {path: 'External_Link.svelte', declarations: []},
@@ -672,6 +672,10 @@ export const src_json = {
 				{name: 'GLYPH_DRAG', kind: 'variable'},
 				{name: 'GLYPH_COPY', kind: 'variable'},
 				{name: 'GLYPH_PASTE', kind: 'variable'},
+				{name: 'GLYPH_ARROW_UP', kind: 'variable'},
+				{name: 'GLYPH_ARROW_DOWN', kind: 'variable'},
+				{name: 'GLYPH_ARROW_LEFT', kind: 'variable'},
+				{name: 'GLYPH_ARROW_RIGHT', kind: 'variable'},
 				{name: 'GLYPH_CHAT', kind: 'variable'},
 				{name: 'GLYPH_TAPE', kind: 'variable'},
 				{name: 'GLYPH_FILE', kind: 'variable'},
@@ -682,6 +686,7 @@ export const src_json = {
 				{name: 'GLYPH_MESSAGE', kind: 'variable'},
 				{name: 'GLYPH_CAPABILITY', kind: 'variable'},
 				{name: 'GLYPH_SETTINGS', kind: 'variable'},
+				{name: 'GLYPH_DOCS', kind: 'variable'},
 				{name: 'GLYPH_ECHO', kind: 'variable'},
 				{name: 'GLYPH_RESPONSE', kind: 'variable'},
 				{name: 'GLYPH_SESSION', kind: 'variable'},
@@ -778,7 +783,6 @@ export const src_json = {
 				{name: 'Models', kind: 'class'},
 			],
 		},
-		'./Native_Popover.svelte': {path: 'Native_Popover.svelte', declarations: []},
 		'./Nav_Link.svelte': {path: 'Nav_Link.svelte', declarations: []},
 		'./ollama.js': {
 			path: 'ollama.ts',
@@ -797,6 +801,7 @@ export const src_json = {
 		'./position_helpers.js': {
 			path: 'position_helpers.ts',
 			declarations: [
+				{name: 'BasicPosition', kind: 'type'},
 				{name: 'Position', kind: 'type'},
 				{name: 'Alignment', kind: 'type'},
 				{name: 'generate_position_styles', kind: 'function'},
@@ -998,6 +1003,7 @@ export const src_json = {
 			path: 'zzz_config.ts',
 			declarations: [{name: 'zzz_config', kind: 'variable'}],
 		},
+		'./Zzz_Docs.svelte': {path: 'Zzz_Docs.svelte', declarations: []},
 		'./Zzz_Root.svelte': {path: 'Zzz_Root.svelte', declarations: []},
 		'./zzz.svelte.js': {
 			path: 'zzz.svelte.ts',

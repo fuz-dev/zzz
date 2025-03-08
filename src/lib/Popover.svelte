@@ -2,7 +2,7 @@
 	import type {SvelteHTMLElements} from 'svelte/elements';
 	import type {Snippet} from 'svelte';
 	import {scale} from 'svelte/transition';
-	import {GLYPH_ARROW_UP, GLYPH_ARROW_DOWN} from '$lib/glyphs.js';
+	import {type BasicPosition} from '$lib/position_helpers.js';
 
 	/**
 	 * A popover component that shows content when a trigger element is clicked
@@ -11,15 +11,17 @@
 		/** Whether the popover is open */
 		open?: boolean;
 		/** Position hint using CSS classes */
-		position?: 'left' | 'right' | 'top' | 'bottom';
+		position?: BasicPosition;
 		/** Attributes for the popover container */
 		popover_attrs?: SvelteHTMLElements['div'];
 		/** Function to call when popover should close */
 		onchange?: (open: boolean) => void;
 		/** Custom trigger element */
-		trigger?: Snippet<[open: boolean, toggle: () => void]>;
+		trigger: Snippet<[open: boolean, toggle: () => void]>;
 		/** Content to render inside the popover */
-		children?: Snippet<[{is_open: boolean; toggle: () => void}]>;
+		children: Snippet<[{is_open: boolean; toggle: () => void}]>;
+		/** Background color class for popover (set to null for transparent) */
+		bg?: string | null;
 	}
 
 	const {
@@ -29,6 +31,7 @@
 		onchange,
 		trigger,
 		children,
+		bg = 'bg_3',
 	}: Props = $props();
 
 	// Track the initial open value separately to avoid race conditions
@@ -98,26 +101,18 @@
 <div class="popover_wrapper">
 	<!-- Trigger element -->
 	<div class="popover_trigger">
-		{#if trigger}
-			{@render trigger(is_open, toggle)}
-		{:else}
-			<button type="button" onclick={() => toggle()} class="plain">
-				Toggle {is_open ? GLYPH_ARROW_UP : GLYPH_ARROW_DOWN}
-			</button>
-		{/if}
+		{@render trigger(is_open, toggle)}
 	</div>
 
 	<!-- Popover content -->
 	{#if is_open}
 		<div
-			class="popover position_{position}"
+			class="popover position_{position} {bg || ''}"
 			{...popover_attrs}
 			transition:scale={{duration: 150}}
 			onclick={(e) => e.stopPropagation()}
 		>
-			{#if children}
-				{@render children({is_open, toggle})}
-			{/if}
+			{@render children({is_open, toggle})}
 		</div>
 	{/if}
 </div>
@@ -135,7 +130,6 @@
 	.popover {
 		position: absolute;
 		min-width: 120px;
-		background: var(--bg_color);
 		border: 1px solid var(--border_color_1);
 		border-radius: var(--radius_md);
 		box-shadow: var(--shadow_md);

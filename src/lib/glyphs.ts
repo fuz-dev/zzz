@@ -9,10 +9,10 @@ export const GLYPH_PASTE = '⎌'; // ⧈ ⎗ ⎘ ⎙
 // export const GLYPH_MOVE = '⧈';
 
 // Arrow glyphs for UI state indicators
-export const GLYPH_ARROW_UP = '▲';
-export const GLYPH_ARROW_DOWN = '▼';
-export const GLYPH_ARROW_LEFT = '◀';
-export const GLYPH_ARROW_RIGHT = '▶';
+export const GLYPH_ARROW_UP = '▲'; // ▲ ⬆ ↑ ⇧ ⭡ ⭰
+export const GLYPH_ARROW_DOWN = '▼'; // ▼ ⬇ ↓ ⇩ ⭣ ⭳
+export const GLYPH_ARROW_LEFT = '◀'; // ◀ ⬅ ← ⇦ ⭠ ⭱
+export const GLYPH_ARROW_RIGHT = '▶'; // ▶ ➡ → ⇨ ⭢ ⭲
 
 export const GLYPH_CHAT = '⌸';
 export const GLYPH_TAPE = '☷';
@@ -24,6 +24,8 @@ export const GLYPH_MODEL = '⊛'; // ⨹ ⨺ ⊛
 export const GLYPH_MESSAGE = '⍾';
 export const GLYPH_CAPABILITY = '⧰'; // ⌁
 export const GLYPH_SETTINGS = '⛮'; // ⛭  ⚙  ⛮  ⛯ ⛣
+
+export const GLYPH_DOCS = '⌘'; // ⧯ ⌹
 
 export const GLYPH_ECHO = '⥀';
 export const GLYPH_RESPONSE = '⮑';

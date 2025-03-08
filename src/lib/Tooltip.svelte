@@ -2,17 +2,17 @@
 	import type {SvelteHTMLElements} from 'svelte/elements';
 	import type {Snippet} from 'svelte';
 	import {fade} from 'svelte/transition';
+	import {type BasicPosition} from '$lib/position_helpers.js';
 
 	const ID = $props.id();
 
 	/**
 	 * Simple tooltip component following W3C a11y patterns
+	 * @see https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 	 */
 	interface Props {
-		/** Text to display in the tooltip */
-		text: string;
 		/** Position hint using CSS classes */
-		position?: 'left' | 'right' | 'top' | 'bottom';
+		position?: BasicPosition;
 		/** Delay before showing the tooltip (ms) */
 		delay?: number;
 		/** Attributes for tooltip container */
@@ -21,50 +21,70 @@
 		children?: Snippet;
 		/** ID for the tooltip (auto-generated if not provided) */
 		id?: string;
+		/** Content to render inside the tooltip */
+		content: Snippet;
+		/** Background color class for tooltip (set to null for transparent) */
+		bg?: string | null;
 	}
 
 	const {
-		text,
 		position = 'top',
 		delay = 80, // TODO import from Moss when it has duration constants
-		tooltip_attrs,
+		tooltip_attrs = {},
 		children,
 		id = ID,
+		content,
+		bg = 'bg_3',
 	}: Props = $props();
 
 	let show_tooltip = $state(false);
 	let timeout: ReturnType<typeof setTimeout> | undefined;
+	let hover_on_trigger = $state(false);
+	let hover_on_tooltip = $state(false);
+
+	$effect(() => {
+		show_tooltip = hover_on_trigger || hover_on_tooltip;
+	});
 
 	const show = () => {
 		clearTimeout(timeout);
 		timeout = setTimeout(() => {
-			show_tooltip = true;
+			hover_on_trigger = true;
 		}, delay);
 	};
 
-	const hide = () => {
+	const hide_trigger = () => {
 		clearTimeout(timeout);
-		show_tooltip = false;
+		hover_on_trigger = false;
+	};
+
+	const handle_tooltip_mouse_enter = () => {
+		hover_on_tooltip = true;
+	};
+
+	const handle_tooltip_mouse_leave = () => {
+		hover_on_tooltip = false;
 	};
 
 	const handle_keydown = (event: KeyboardEvent) => {
 		if (event.key === 'Escape' && show_tooltip) {
-			hide();
+			hide_trigger();
+			hover_on_tooltip = false;
 		}
 	};
 </script>
 
+<svelte:document onkeydown={handle_keydown} />
+
 <div class="tooltip_wrapper">
-	<!-- Add role="button" to fix ARIA warning -->
 	<span
 		role="button"
 		tabindex="0"
 		aria-describedby={show_tooltip ? id : undefined}
 		onmouseenter={show}
-		onmouseleave={hide}
+		onmouseleave={hide_trigger}
 		onfocus={show}
-		onblur={hide}
-		onkeydown={handle_keydown}
+		onblur={hide_trigger}
 	>
 		{#if children}
 			{@render children()}
@@ -75,11 +95,13 @@
 		<div
 			{id}
 			role="tooltip"
-			class="tooltip position_{position} size_xs bg_1 radius_xs"
+			class="tooltip position_{position} size_xs radius_xs {bg || ''}"
 			transition:fade={{duration: 100}}
+			onmouseenter={handle_tooltip_mouse_enter}
+			onmouseleave={handle_tooltip_mouse_leave}
 			{...tooltip_attrs}
 		>
-			{text}
+			{@render content()}
 		</div>
 	{/if}
 </div>

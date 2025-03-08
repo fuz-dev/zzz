@@ -11,10 +11,10 @@
 		/** Whether to show the positioned element */
 		show: boolean;
 		/** Position of the element relative to its container */
-		anchor?: Position;
+		position?: Position;
 		/** Alignment along the specified anchor edge */
 		align?: Alignment;
-		/** Distance from the anchor (CSS value) */
+		/** Distance from the position (CSS value) */
 		offset?: string;
 		/** Animation duration in ms */
 		duration?: number;
@@ -28,23 +28,26 @@
 		children?: Snippet;
 		/** Trigger element content */
 		trigger?: Snippet;
+		/** Background color class for element (set to null for transparent) */
+		bg?: string | null;
 	}
 
 	const {
 		show = false,
-		anchor = 'right',
+		position = 'right',
 		align = 'center',
 		offset,
 		duration = 120,
-		element_attrs,
+		element_attrs = {},
 		class: class_name = '',
 		pointer_events = true,
 		children,
 		trigger,
+		bg = 'bg_3',
 	}: Props = $props();
 
 	// Get the position style string using the helper function
-	const position_style = $derived(get_position_style(anchor, align, offset));
+	const position_style = $derived(get_position_style(position, align, offset));
 </script>
 
 <div class="positioned_element_wrapper">
@@ -56,7 +59,7 @@
 		<div class="positioned_container pointer_events_none">
 			<div
 				{...element_attrs}
-				class="positioned_element {class_name} {pointer_events
+				class="positioned_element {class_name} {bg || ''} {pointer_events
 					? 'pointer_events_auto'
 					: 'pointer_events_none'}"
 				style={position_style}

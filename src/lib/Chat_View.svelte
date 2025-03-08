@@ -7,6 +7,7 @@
 
 	import Glyph_Icon from '$lib/Glyph_Icon.svelte';
 	import Confirm_Button from '$lib/Confirm_Button.svelte';
+	import Confirm_Cancel_Button from '$lib/Confirm_Cancel_Button.svelte';
 	import {Chat} from '$lib/chat.svelte.js';
 	import Model_Selector from '$lib/Model_Selector.svelte';
 	import Chat_Tape from '$lib/Chat_Tape.svelte';
@@ -26,7 +27,6 @@
 	import Bit_Stats from '$lib/Bit_Stats.svelte';
 	import Prompt_List from '$lib/Prompt_List.svelte';
 	import Tape_List from '$lib/Tape_List.svelte';
-	import Double_Button from '$lib/Double_Button.svelte';
 	import Tooltip from '$lib/Tooltip.svelte';
 	import Popover from '$lib/Popover.svelte';
 
@@ -182,24 +182,43 @@
 				/>
 			</div>
 			<div class="mt_lg">
-				<Double_Button
+				<Confirm_Button
+					onclick={() => chat.remove_all_tapes()}
+					attrs={{disabled: !count, class: 'plain'}}
+					position="right"
+				>
+					{GLYPH_REMOVE} <span class="ml_xs">remove all tapes</span>
+				</Confirm_Button>
+
+				<Confirm_Cancel_Button
 					onconfirm={() => chat.remove_all_tapes()}
 					attrs={{disabled: !count, class: 'plain'}}
 					position="right"
 				>
 					{GLYPH_REMOVE} <span class="ml_xs">remove all tapes</span>
-				</Double_Button>
+				</Confirm_Cancel_Button>
 
-				<!-- Updated Tooltip usage with proper a11y support -->
-				<Tooltip text="Remove all tapes from this chat" position="top">
+				<!-- Updated Tooltip with content snippet -->
+				<Tooltip position="top">
+					{#snippet content()}
+						Remove all tapes from this chat
+					{/snippet}
 					<button type="button" class="plain icon_button ml_md">{GLYPH_REMOVE}</button>
 				</Tooltip>
 
-				<!-- Example Popover usage -->
+				<!-- Rich content tooltip -->
+				<Tooltip position="right">
+					{#snippet content()}
+						<span class="color_e">Custom tooltip content</span> with <b>formatting</b>
+					{/snippet}
+					<button type="button" class="plain icon_button ml_md">{GLYPH_CHECK}</button>
+				</Tooltip>
+
+				<!-- Popover with improved UI -->
 				<Popover position="bottom">
 					{#snippet trigger(is_open, toggle)}
 						<button type="button" class="plain ml_md" onclick={toggle}>
-							Actions <small class="size_xs ml_sm"
+							Actions <small class="size_xs ml_xs"
 								>{is_open ? GLYPH_ARROW_UP : GLYPH_ARROW_DOWN}</small
 							>
 						</button>
@@ -219,6 +238,10 @@
 							</button>
 							<button type="button" class="plain w_100 text_align_left">
 								{GLYPH_CHECK} Another action
+							</button>
+							<div class="divider my_xs"></div>
+							<button type="button" class="plain w_100 text_align_left color_c">
+								Export to prompt...
 							</button>
 						</div>
 					{/snippet}
@@ -283,5 +306,11 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(var(--width_sm), 1fr));
 		gap: var(--space_md);
+	}
+
+	.divider {
+		height: 1px;
+		background-color: var(--border_color_1);
+		width: 100%;
 	}
 </style>

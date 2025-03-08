@@ -18,6 +18,9 @@
 .bg_1 {
 	background-color: var(--bg_1);
 }
+.bg_2 {
+	background-color: var(--bg_2);
+}
 .bg_c_1 {
 	background-color: var(--color_c_1);
 }
@@ -30,8 +33,14 @@
 .block {
 	display: block;
 }
+.border_color_1 {
+	border-color: var(--border_color_1);
+}
 .border_none {
 	border-style: none;
+}
+.border_width_1 {
+	border-width: var(--border_width_1);
 }
 
 .box {
@@ -62,6 +71,9 @@ a.chip {
 	font-weight: 700;
 }
 
+.color_a_5 {
+	color: var(--color_a_5);
+}
 .color_c_5 {
 	color: var(--color_c_5);
 }
@@ -201,11 +213,20 @@ a.chip {
 .mb_sm {
 	margin-bottom: var(--space_sm);
 }
+.mb_xl {
+	margin-bottom: var(--space_xl);
+}
+.mb_xl3 {
+	margin-bottom: var(--space_xl3);
+}
 .mb_xl5 {
 	margin-bottom: var(--space_xl5);
 }
 .mb_xl7 {
 	margin-bottom: var(--space_xl7);
+}
+.mb_xl9 {
+	margin-bottom: var(--space_xl9);
 }
 .mb_xs {
 	margin-bottom: var(--space_xs);
@@ -272,6 +293,9 @@ a.chip {
 }
 .ml_xs {
 	margin-left: var(--space_xs);
+}
+.mr_sm {
+	margin-right: var(--space_sm);
 }
 .mr_xl {
 	margin-right: var(--space_xl);
@@ -388,6 +412,9 @@ a.chip {
 .pr_md {
 	padding-right: var(--space_md);
 }
+.pt_xl2 {
+	padding-top: var(--space_xl2);
+}
 .pt_xs {
 	padding-top: var(--space_xs);
 }
@@ -417,6 +444,9 @@ a.chip {
 }
 .radius_0 {
 	border-radius: 0;
+}
+.radius_md {
+	border-radius: var(--radius_md);
 }
 .radius_sm {
 	border-radius: var(--radius_sm);

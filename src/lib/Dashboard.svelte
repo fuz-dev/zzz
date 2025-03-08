@@ -9,6 +9,7 @@
 	import {
 		GLYPH_CAPABILITY,
 		GLYPH_CHAT,
+		GLYPH_DOCS,
 		GLYPH_FILE,
 		GLYPH_MESSAGE,
 		GLYPH_MODEL,
@@ -97,6 +98,9 @@
 								size="var(--icon_size_xs)"
 							/></span
 						> about{/snippet}</Nav_Link
+				>
+				<Nav_Link href="{base}/docs"
+					><Glyph_Icon icon={GLYPH_DOCS} attrs={{class: 'icon_xs'}} /> docs</Nav_Link
 				>
 				<Nav_Link href="{base}/messages"
 					><Glyph_Icon icon={GLYPH_MESSAGE} attrs={{class: 'icon_xs'}} /> messages</Nav_Link

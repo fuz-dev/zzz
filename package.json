@@ -182,6 +182,11 @@
       "svelte": "./dist/Confirm_Button.svelte",
       "default": "./dist/Confirm_Button.svelte"
     },
+    "./Confirm_Cancel_Button.svelte": {
+      "types": "./dist/Confirm_Cancel_Button.svelte.d.ts",
+      "svelte": "./dist/Confirm_Cancel_Button.svelte",
+      "default": "./dist/Confirm_Cancel_Button.svelte"
+    },
     "./constants.js": {
       "types": "./dist/constants.d.ts",
       "default": "./dist/constants.js"
@@ -276,11 +281,6 @@
     "./diskfiles.svelte.js": {
       "types": "./dist/diskfiles.svelte.d.ts",
       "default": "./dist/diskfiles.svelte.js"
-    },
-    "./Double_Button.svelte": {
-      "types": "./dist/Double_Button.svelte.d.ts",
-      "svelte": "./dist/Double_Button.svelte",
-      "default": "./dist/Double_Button.svelte"
     },
     "./Error_Message.svelte": {
       "types": "./dist/Error_Message.svelte.d.ts",
@@ -388,11 +388,6 @@
     "./models.svelte.js": {
       "types": "./dist/models.svelte.d.ts",
       "default": "./dist/models.svelte.js"
-    },
-    "./Native_Popover.svelte": {
-      "types": "./dist/Native_Popover.svelte.d.ts",
-      "svelte": "./dist/Native_Popover.svelte",
-      "default": "./dist/Native_Popover.svelte"
     },
     "./Nav_Link.svelte": {
       "types": "./dist/Nav_Link.svelte.d.ts",
@@ -596,6 +591,11 @@
     "./zzz_config.js": {
       "types": "./dist/zzz_config.d.ts",
       "default": "./dist/zzz_config.js"
+    },
+    "./Zzz_Docs.svelte": {
+      "types": "./dist/Zzz_Docs.svelte.d.ts",
+      "svelte": "./dist/Zzz_Docs.svelte",
+      "default": "./dist/Zzz_Docs.svelte"
     },
     "./Zzz_Root.svelte": {
       "types": "./dist/Zzz_Root.svelte.d.ts",
