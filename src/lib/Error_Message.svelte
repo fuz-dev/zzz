@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type {Snippet} from 'svelte';
-
-	import Hud_Root from '$lib/Hud_Root.svelte';
+	import Alert from '@ryanatkn/fuz/Alert.svelte';
 
 	interface Props {
 		children: Snippet;
@@ -10,8 +9,6 @@
 	const {children}: Props = $props();
 </script>
 
-<Hud_Root>
-	<main>
-		{@render children()}
-	</main>
-</Hud_Root>
+<Alert status="error">
+	{@render children()}
+</Alert>

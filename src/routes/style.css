@@ -1,9 +1,168 @@
 /* global stylesheet imported by `src/routes/+layout.svelte */
 
-/*
-
-:root {
-  --some_stylish_property: 100%;
+/* TODO probably upstream serif headings to Moss */
+.heading,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'DM Serif Display', Georgia, serif; /* copying svelte's homework and taste */
 }
 
-*/
+/* TODO upstream */
+/* This is needed in places where glyphs may appear with non-sans fonts like headings. */
+.glyph {
+	font-family: var(--font_sans);
+}
+
+.click_effect_scale:hover {
+	transform: scale(1.08);
+}
+.click_effect_scale:active {
+	transform: scale(1.14);
+}
+
+/* TODO refactor with `Glyph_Icon`*/
+.icon_xs {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2ch;
+	margin-right: var(--space_xs);
+	text-align: center;
+}
+
+/* TODO upstream most of this */
+.compact {
+	--input_height: 2.6rem;
+	--min_height: 2.6rem;
+	--border_radius: var(--radius_xs);
+}
+input[type='checkbox'].compact {
+	height: var(--input_height);
+	min-height: var(--input_height);
+}
+input[type='checkbox'].compact:not(:hover)::before {
+	color: var(--text_color_3);
+}
+
+/* TODO upstream */
+input[type='checkbox'].plain {
+	height: var(--input_height);
+	min-height: var(--input_height);
+}
+input[type='checkbox'].plain:not(:hover) {
+	--input_fill: transparent;
+}
+
+/* TODO upstream? something like it? */
+.dormant {
+	opacity: 0.6;
+}
+
+/* TODO upstream probably */
+.scrolled {
+	box-shadow: var(
+		--box_shadow,
+		var(--shadow_sm) color-mix(in hsl, var(--shadow_color) var(--shadow_alpha_2), transparent) inset
+	);
+}
+
+/* TODO @many upstream to Fuz? (not Moss right?) */
+.reorderable_item {
+	--reorderable_outline_style: dashed;
+	outline: var(--outline_width) var(--reorderable_outline_style) var(--outline_color);
+}
+.reorderable_item:hover {
+	outline-width: var(--border_width_1);
+	outline-color: var(--border_color_3);
+}
+.reorderable_item:active {
+	outline-width: var(--border_width_1);
+	outline-color: var(--outline_color);
+}
+.reorderable_item.dragging {
+	opacity: var(--fade_3);
+	outline-width: var(--border_width_2);
+}
+
+/* TODO @many upstream to Fuz? (not Moss right?) */
+[draggable='true'] {
+	cursor: grab;
+}
+[draggable='true']:active {
+	cursor: grabbing;
+}
+/* Drag indicator base style */
+.drag_over {
+	--drag_indicator_size: 4px;
+	--drag_indicator_color: var(--color_a_5);
+	--drag_indicator_z_index: 100;
+	position: relative;
+}
+/* Common styles for all indicators */
+.drag_over_top::before,
+.drag_over_bottom::after,
+.drag_over_left::before,
+.drag_over_right::after {
+	content: '';
+	position: absolute;
+	background-color: var(--drag_indicator_color);
+	z-index: var(--drag_indicator_z_index);
+	pointer-events: none;
+}
+/* Top drag indicator */
+.drag_over_top::before {
+	top: calc(-1 * var(--drag_indicator_size) / 2);
+	left: 0;
+	right: 0;
+	height: var(--drag_indicator_size);
+}
+/* Bottom drag indicator */
+.drag_over_bottom::after {
+	bottom: calc(-1 * var(--drag_indicator_size) / 2);
+	left: 0;
+	right: 0;
+	height: var(--drag_indicator_size);
+}
+/* Left drag indicator */
+.drag_over_left::before {
+	left: calc(-1 * var(--drag_indicator_size) / 2);
+	top: 0;
+	bottom: 0;
+	width: var(--drag_indicator_size);
+}
+/* Right drag indicator */
+.drag_over_right::after {
+	right: calc(-1 * var(--drag_indicator_size) / 2);
+	top: 0;
+	bottom: 0;
+	width: var(--drag_indicator_size);
+}
+
+/* TODO ? */
+/* .drag_over_invalid::before {
+	background-color: var(--color_c_5);
+} */
+
+/* Layout classes */
+.column_fixed {
+	width: var(--column_width, var(--width_sm));
+	min-width: var(--column_width, var(--width_sm));
+	height: 100%;
+	overflow: auto;
+	scrollbar-width: thin;
+}
+.column_fluid {
+	flex: 1;
+	height: 100%;
+	overflow: auto;
+	scrollbar-width: thin;
+}
+
+.column_bg_1 {
+	background-color: var(--fg_1);
+	min-height: 100%;
+}
