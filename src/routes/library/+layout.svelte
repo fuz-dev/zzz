@@ -4,7 +4,7 @@
 	import Svg from '@ryanatkn/fuz/Svg.svelte';
 	import {zzz_logo} from '@ryanatkn/fuz/logos.js';
 
-	import {tomes} from '$routes/docs/tomes.js';
+	import {tomes} from '$routes/library/tomes.js';
 	import {pkg_context} from '$routes/pkg.js';
 
 	interface Props {
@@ -20,7 +20,7 @@
 	{#snippet breadcrumb_children(is_primary_nav)}
 		{#if is_primary_nav}
 			<div class="icon row">
-				<Svg data={zzz_logo} size="var(--icon_size_sm)" /> <span class="ml_sm">moss</span>
+				<Svg data={zzz_logo} size="var(--icon_size_sm)" /> <span class="ml_sm">zzz</span>
 			</div>
 		{:else}
 			<Svg data={zzz_logo} size="var(--icon_size_sm)" />

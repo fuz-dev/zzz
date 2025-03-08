@@ -1,10 +1,10 @@
 import type {Tome} from '@ryanatkn/fuz/tome.js';
 
-import tooltip from '$routes/docs/tooltip/+page.svelte';
-import popover from '$routes/docs/popover/+page.svelte';
-import confirm_button from '$routes/docs/confirm_button/+page.svelte';
-import confirm_cancel_button from '$routes/docs/confirm_cancel_button/+page.svelte';
-import positioned_element from '$routes/docs/positioned_element/+page.svelte';
+import tooltip from '$routes/library/tooltip/+page.svelte';
+import popover from '$routes/library/popover/+page.svelte';
+import confirm_button from '$routes/library/confirm_button/+page.svelte';
+import confirm_cancel_button from '$routes/library/confirm_cancel_button/+page.svelte';
+import positioned_element from '$routes/library/positioned_element/+page.svelte';
 
 export const tomes: Array<Tome> = [
 	{

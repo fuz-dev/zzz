@@ -32,13 +32,13 @@ export const providers_default: Array<z.input<typeof Provider_Json>> = [
 		name: 'chatgpt',
 		icon: '',
 		title: 'ChatGPT',
-		url: 'https://platform.openai.com/docs/overview',
+		url: 'https://platform.openai.com/library/overview',
 	},
 	{
 		name: 'gemini',
 		icon: '',
 		title: 'Gemini',
-		url: 'https://ai.google.dev/gemini-api/docs/',
+		url: 'https://ai.google.dev/gemini-api/library/',
 	},
 ];
 

@@ -2,6 +2,8 @@
 	import Code from '@ryanatkn/fuz_code/Code.svelte';
 	import Confirm_Cancel_Button from '$lib/Confirm_Cancel_Button.svelte';
 	import Tome_Content from '@ryanatkn/fuz/Tome_Content.svelte';
+	import Tome_Section from '@ryanatkn/fuz/Tome_Section.svelte';
+	import Tome_Section_Header from '@ryanatkn/fuz/Tome_Section_Header.svelte';
 	import Tome_Link from '@ryanatkn/fuz/Tome_Link.svelte';
 	import {get_tome_by_name} from '@ryanatkn/fuz/tome.js';
 	import {GLYPH_REMOVE, GLYPH_CHECK, GLYPH_CANCEL} from '$lib/glyphs.js';
@@ -18,25 +20,24 @@
 </script>
 
 <Tome_Content {tome}>
-	<h1 class="size_xl mb_md">Confirm/Cancel Button</h1>
+	<h1>Confirm/Cancel Button</h1>
 
-	<p class="mb_md">
-		The Confirm/Cancel Button component provides both confirm and cancel options before executing an
-		action, giving users a chance to reconsider before proceeding with potentially destructive
-		operations.
+	<p>
+		The Confirm/Cancel Button provides both confirm and cancel options before executing an action,
+		giving users a chance to reconsider before proceeding with potentially destructive operations.
 	</p>
 
-	<div class="import_example p_sm bg_2 radius_sm mb_lg">
+	<div class="import_example p_sm bg_2 radius_sm mb_md">
 		<Code content="import Confirm_Cancel_Button from '$lib/Confirm_Cancel_Button.svelte';" />
 	</div>
 
-	<section class="mb_xl">
-		<h2 class="size_lg mb_md">Examples</h2>
+	<Tome_Section>
+		<Tome_Section_Header text="Examples" />
 
 		<div class="example_grid">
-			<div class="example p_md bg_2 radius_sm">
-				<h3 class="size_md mb_xs">Basic Usage</h3>
-				<div class="example_demo mb_sm p_md flex justify_content_center align_items_center">
+			<div class="example p_sm bg_2 radius_sm">
+				<h3 class="size_sm">Basic Usage</h3>
+				<div class="example_demo mb_sm">
 					<Confirm_Cancel_Button
 						onconfirm={demo_action}
 						oncancel={() => console.log('Cancelled')}
@@ -45,7 +46,6 @@
 						Delete Item
 					</Confirm_Cancel_Button>
 				</div>
-
 				<Code
 					content={`<Confirm_Cancel_Button 
   onconfirm={delete_action}
@@ -57,9 +57,9 @@
 				/>
 			</div>
 
-			<div class="example p_md bg_2 radius_sm">
-				<h3 class="size_md mb_xs">Icon Button</h3>
-				<div class="example_demo mb_sm p_md flex justify_content_center align_items_center">
+			<div class="example p_sm bg_2 radius_sm">
+				<h3 class="size_sm">Icon Button</h3>
+				<div class="example_demo mb_sm">
 					<Confirm_Cancel_Button
 						onconfirm={demo_action}
 						attrs={{class: 'plain icon_button'}}
@@ -68,7 +68,6 @@
 						{GLYPH_REMOVE}
 					</Confirm_Cancel_Button>
 				</div>
-
 				<Code
 					content={`<Confirm_Cancel_Button 
   onconfirm={delete_action}
@@ -80,9 +79,9 @@
 				/>
 			</div>
 
-			<div class="example p_md bg_2 radius_sm">
-				<h3 class="size_md mb_xs">Custom Button Icons</h3>
-				<div class="example_demo mb_sm p_md flex justify_content_center align_items_center">
+			<div class="example p_sm bg_2 radius_sm">
+				<h3 class="size_sm">Custom Buttons</h3>
+				<div class="example_demo mb_sm">
 					<Confirm_Cancel_Button onconfirm={demo_action} oncancel={demo_cancel} position="bottom">
 						{#snippet confirm_button()}
 							<span class="color_h">{GLYPH_CHECK} Yes</span>
@@ -95,7 +94,6 @@
 						Custom Buttons
 					</Confirm_Cancel_Button>
 				</div>
-
 				<Code
 					content={`<Confirm_Cancel_Button
   onconfirm={delete_action}
@@ -115,85 +113,28 @@
 				/>
 			</div>
 
-			<div class="example p_md bg_2 radius_sm">
-				<h3 class="size_md mb_xs">Non-Dismissible</h3>
-				<div class="example_demo mb_sm p_md flex justify_content_center align_items_center">
-					<Confirm_Cancel_Button
-						onconfirm={demo_action}
-						oncancel={() => console.log('Cancelled')}
-						close_on_outside_click={false}
-						position="left"
-					>
-						Persistent Options
+			<div class="example p_sm bg_2 radius_sm">
+				<h3 class="size_sm">Custom Background</h3>
+				<div class="example_demo mb_sm">
+					<Confirm_Cancel_Button onconfirm={demo_action} position="left" popover_bg="bg_h_1">
+						Styled Buttons
 					</Confirm_Cancel_Button>
 				</div>
-
 				<Code
 					content={`<Confirm_Cancel_Button
   onconfirm={delete_action}
-  oncancel={() => console.log('Cancelled')}
-  close_on_outside_click={false}
   position="left"
->
-  Persistent Options
-</Confirm_Cancel_Button>`}
-				/>
-			</div>
-
-			<div class="example p_md bg_2 radius_sm">
-				<h3 class="size_md mb_xs">Custom Background</h3>
-				<div class="example_demo mb_sm p_md flex justify_content_center align_items_center">
-					<Confirm_Cancel_Button
-						onconfirm={demo_action}
-						oncancel={() => console.log('Cancelled')}
-						position="right"
-						popover_bg="bg_h_1"
-					>
-						Custom Background
-					</Confirm_Cancel_Button>
-				</div>
-
-				<Code
-					content={`<Confirm_Cancel_Button
-  onconfirm={delete_action}
-  oncancel={() => console.log('Cancelled')}
-  position="right"
   popover_bg="bg_h_1"
 >
-  Custom Background
-</Confirm_Cancel_Button>`}
-				/>
-			</div>
-
-			<div class="example p_md bg_2 radius_sm">
-				<h3 class="size_md mb_xs">Transparent Background</h3>
-				<div class="example_demo mb_sm p_md flex justify_content_center align_items_center">
-					<Confirm_Cancel_Button
-						onconfirm={demo_action}
-						oncancel={() => console.log('Cancelled')}
-						position="bottom"
-						popover_bg={null}
-					>
-						No Background
-					</Confirm_Cancel_Button>
-				</div>
-
-				<Code
-					content={`<Confirm_Cancel_Button
-  onconfirm={delete_action}
-  oncancel={() => console.log('Cancelled')}
-  position="bottom"
-  popover_bg={null}
->
-  No Background
+  Styled Buttons
 </Confirm_Cancel_Button>`}
 				/>
 			</div>
 		</div>
-	</section>
+	</Tome_Section>
 
-	<section class="mb_xl">
-		<h2 class="size_lg mb_md">Props</h2>
+	<Tome_Section>
+		<Tome_Section_Header text="Props" />
 
 		<div class="table_wrapper">
 			<table class="w_100">
@@ -216,127 +157,126 @@
 						<td>oncancel</td>
 						<td>() => void</td>
 						<td>undefined</td>
-						<td>Optional function called when cancelled</td>
+						<td>Optional cancel callback</td>
 					</tr>
 					<tr>
 						<td>attrs</td>
 						<td>SvelteHTMLElements['button']</td>
-						<td>{'{}'}</td>
-						<td>HTML attributes for the main button</td>
+						<td>&lbrace;}</td>
+						<td>HTML attributes for button</td>
 					</tr>
 					<tr>
 						<td>position</td>
 						<td>BasicPosition</td>
 						<td>'left'</td>
-						<td>Position of the action buttons ('top', 'right', 'bottom', 'left')</td>
+						<td>Position of action buttons</td>
 					</tr>
 					<tr>
 						<td>confirm_button</td>
 						<td>Snippet</td>
 						<td>undefined</td>
-						<td>Custom content for confirm button (replaces default)</td>
+						<td>Custom confirm button content</td>
 					</tr>
 					<tr>
 						<td>cancel_button</td>
 						<td>Snippet</td>
 						<td>undefined</td>
-						<td>Custom content for cancel button (replaces default)</td>
+						<td>Custom cancel button content</td>
 					</tr>
 					<tr>
 						<td>confirm_attrs</td>
 						<td>SvelteHTMLElements['button']</td>
-						<td>{'{}'}</td>
+						<td>&lbrace;}</td>
 						<td>HTML attributes for confirm button</td>
 					</tr>
 					<tr>
 						<td>cancel_attrs</td>
 						<td>SvelteHTMLElements['button']</td>
-						<td>{'{}'}</td>
+						<td>&lbrace;}</td>
 						<td>HTML attributes for cancel button</td>
 					</tr>
 					<tr>
 						<td>children</td>
 						<td>Snippet</td>
 						<td>undefined</td>
-						<td>Content to render in the main button</td>
+						<td>Content for main button</td>
 					</tr>
 					<tr>
 						<td>close_on_outside_click</td>
 						<td>boolean</td>
 						<td>true</td>
-						<td>Whether to close buttons when clicking outside</td>
+						<td>Close when clicking outside</td>
 					</tr>
 					<tr>
 						<td>popover_bg</td>
 						<td>string | null</td>
 						<td>'bg_3'</td>
-						<td>Background color class or null for transparent</td>
+						<td>Background class or null</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-	</section>
+	</Tome_Section>
 
-	<section class="mb_xl">
-		<h2 class="size_lg mb_md">Usage Notes</h2>
+	<Tome_Section>
+		<Tome_Section_Header text="When to Use" />
 
-		<p class="mb_md">
+		<p>
 			The Confirm/Cancel Button offers more functionality than <Tome_Link name="confirm_button" />,
-			providing explicit options for both confirming and cancelling. It's ideal for actions where
-			users should consciously make a choice rather than just confirm.
+			providing explicit options for both confirming and cancelling.
 		</p>
 
-		<h3 class="mb_sm">When to Use</h3>
-		<ul class="mb_md">
+		<ul class="mb_sm">
 			<li>For destructive operations that need explicit confirmation</li>
 			<li>When the cancel action needs its own callback</li>
 			<li>When users benefit from seeing both options simultaneously</li>
-			<li>For interfaces that need to match the mental model of "yes/no" choices</li>
+			<li>For interfaces that need a "yes/no" choice pattern</li>
 		</ul>
 
 		<p>
 			This component is built on core positioning utilities provided by
 			<Tome_Link name="positioned_element" />.
 		</p>
-	</section>
+	</Tome_Section>
 
-	<section class="mb_xl">
-		<h2 class="size_lg mb_md">Accessibility</h2>
+	<Tome_Section>
+		<Tome_Section_Header text="Accessibility" />
 
-		<p class="mb_md">
-			The Confirm/Cancel Button component implements these accessibility features:
-		</p>
-
+		<p>The Confirm/Cancel Button implements these accessibility features:</p>
 		<ul>
 			<li>Can be dismissed with the Escape key</li>
-			<li>Provides visual distinction between confirm and cancel actions</li>
+			<li>Visually distinguishes between confirm and cancel actions</li>
 			<li>Maintains focus management</li>
-			<li>Buttons have adequate size for touch targets</li>
+			<li>Provides adequate touch target sizes</li>
 		</ul>
 
-		<div class="bg_2 p_md radius_sm mt_md">
-			<h3 class="size_sm mb_xs">Best Practices</h3>
+		<div class="bg_2 p_sm radius_sm mt_sm">
+			<h4 class="size_sm mb_xs">Best Practices</h4>
 			<ul class="mb_0">
-				<li>Position the control where it won't overlap with essential UI elements</li>
-				<li>Use colors consistently (e.g., green for confirm, red for destructive actions)</li>
-				<li>Provide clear labels when using custom button content</li>
-				<li>Consider increasing the touch target size for mobile interfaces</li>
+				<li>Position where it won't overlap important UI elements</li>
+				<li>Use consistent colors (green for confirm, red for destructive actions)</li>
+				<li>Provide clear labels for custom button content</li>
+				<li>Consider larger touch targets for mobile interfaces</li>
 			</ul>
 		</div>
-	</section>
+	</Tome_Section>
 </Tome_Content>
 
 <style>
 	.example_grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(var(--width_sm), 1fr));
 		gap: var(--space_md);
 	}
 
 	.example_demo {
 		border: 1px dashed var(--border_color_1);
 		border-radius: var(--radius_xs);
-		min-height: 60px;
+		min-height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: var(--space_sm);
 	}
 
 	.table_wrapper {
@@ -345,6 +285,7 @@
 
 	table {
 		border-collapse: collapse;
+		font-size: var(--size_sm);
 	}
 
 	th,
@@ -357,10 +298,5 @@
 	th {
 		font-weight: 600;
 		background-color: var(--bg_color_2);
-	}
-
-	code {
-		font-family: var(--font_mono);
-		font-size: 0.9em;
 	}
 </style>

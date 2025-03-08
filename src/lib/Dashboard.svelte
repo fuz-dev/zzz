@@ -99,7 +99,7 @@
 							/></span
 						> about{/snippet}</Nav_Link
 				>
-				<Nav_Link href="{base}/docs"
+				<Nav_Link href="{base}/library"
 					><Glyph_Icon icon={GLYPH_DOCS} attrs={{class: 'icon_xs'}} /> docs</Nav_Link
 				>
 				<Nav_Link href="{base}/messages"

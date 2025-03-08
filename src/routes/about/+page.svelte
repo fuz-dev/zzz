@@ -215,7 +215,7 @@
 			the ecosystem's interoperability. Your input is highly valued to keep things on track and
 			fun—see the issues and discussions on the
 			<External_Link href="https://github.com/ryanatkn/zzz">repo</External_Link>, the
-			<a href="{base}/docs">docs</a>, and find me on
+			<a href="{base}/library">docs</a>, and find me on
 			<External_Link href="https://bsky.app/profile/ryanatkn.com">Bluesky</External_Link>.
 		</p>
 	</section>

@@ -13,6 +13,6 @@
 
 <Library_Content {tomes} {pkg}>
 	{#snippet repo_name()}
-		<h1 class="mb_sm">moss</h1>
+		<span hidden></span>
 	{/snippet}
 </Library_Content>
