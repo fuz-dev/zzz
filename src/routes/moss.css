@@ -15,11 +15,11 @@
 .bg {
 	background-color: var(--bg);
 }
-.bg_1 {
-	background-color: var(--bg_1);
-}
 .bg_2 {
 	background-color: var(--bg_2);
+}
+.bg_3 {
+	background-color: var(--bg_3);
 }
 .bg_c_1 {
 	background-color: var(--color_c_1);
@@ -195,8 +195,14 @@ a.chip {
 .l_0 {
 	left: 0;
 }
+.line_height_lg {
+	line-height: var(--line_height_lg);
+}
 .line_height_md {
 	line-height: var(--line_height_md);
+}
+.line_height_sm {
+	line-height: var(--line_height_sm);
 }
 .m_0 {
 	margin: 0;
@@ -294,9 +300,6 @@ a.chip {
 .ml_xs {
 	margin-left: var(--space_xs);
 }
-.mr_sm {
-	margin-right: var(--space_sm);
-}
 .mr_xl {
 	margin-right: var(--space_xl);
 }
@@ -340,6 +343,9 @@ a.chip {
 }
 .overflow_hidden {
 	overflow: hidden;
+}
+.overflow_wrap_anywhere {
+	overflow-wrap: anywhere;
 }
 .overflow_wrap_break_word {
 	overflow-wrap: break-word;
@@ -385,8 +391,14 @@ a.chip {
 	background-color: var(--panel_bg, var(--fg_1));
 }
 
+.pb_0 {
+	padding-bottom: 0;
+}
 .pb_md {
 	padding-bottom: var(--space_md);
+}
+.pb_xl {
+	padding-bottom: var(--space_xl);
 }
 .pb_xl7 {
 	padding-bottom: var(--space_xl7);
@@ -396,6 +408,9 @@ a.chip {
 }
 .pl_xl {
 	padding-left: var(--space_xl);
+}
+.pl_xl4 {
+	padding-left: var(--space_xl4);
 }
 
 /* TODO maybe this belongs with the reset, like `selected`? or does `selected` belong here? */
@@ -412,11 +427,30 @@ a.chip {
 .pr_md {
 	padding-right: var(--space_md);
 }
+
+.pre {
+	font-family: var(--font_mono);
+	color: var(--text_color, var(--text_color_3));
+	overflow: auto;
+	max-width: 100%;
+}
+.pre > code {
+	font-size: var(--size_sm); /* TODO @many use a var? maybe computed from generic `--size`? */
+	font-weight: 500;
+}
+.pre:not(.inline) > code {
+	display: block;
+}
+
 .pt_xl2 {
 	padding-top: var(--space_xl2);
 }
 .pt_xs {
 	padding-top: var(--space_xs);
+}
+.px_lg {
+	padding-left: var(--space_lg);
+	padding-right: var(--space_lg);
 }
 .px_md {
 	padding-left: var(--space_md);

@@ -10,6 +10,7 @@
 	import {contextmenu_action} from '@ryanatkn/fuz/contextmenu_state.svelte.js';
 	import {parse_package_meta} from '@ryanatkn/gro/package_meta.js';
 	import * as devalue from 'devalue';
+	import {BROWSER} from 'esm-env';
 	import {create_deferred, type Deferred} from '@ryanatkn/belt/async.js';
 	import {browser} from '$app/environment';
 	import {Unreachable_Error} from '@ryanatkn/belt/error.js';
@@ -139,7 +140,7 @@
 		zzz.prompts.add().add_bit();
 	});
 
-	$inspect('providers', zzz.providers);
+	if (BROWSER) $inspect('providers', zzz.providers);
 
 	// Initialize the session
 	zzz.messages.send({id: Uuid.parse(undefined), type: 'load_session'});

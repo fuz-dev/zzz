@@ -39,6 +39,7 @@
 	let is_open = $state(initial_open);
 
 	// Only sync with external open prop when IT changes, not when our internal state changes
+	// TODO BLOCK $effect.pre?
 	$effect(() => {
 		// Only update is_open if the initial_open prop changed from previous value
 		if (previous_initial_open !== initial_open) {

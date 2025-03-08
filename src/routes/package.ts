@@ -35,6 +35,7 @@ export const package_json = {
 		'@changesets/changelog-git': '^0.2.1',
 		'@ryanatkn/eslint-config': '^0.7.0',
 		'@ryanatkn/fuz': '^0.133.1',
+		'@ryanatkn/fuz_code': '^0.21.0',
 		'@ryanatkn/gro': '^0.148.0',
 		'@ryanatkn/moss': '^0.23.2',
 		'@sveltejs/adapter-static': '^3.0.8',
@@ -495,11 +496,6 @@ export const package_json = {
 		'./xml.js': {types: './dist/xml.d.ts', default: './dist/xml.js'},
 		'./zod_helpers.js': {types: './dist/zod_helpers.d.ts', default: './dist/zod_helpers.js'},
 		'./zzz_config.js': {types: './dist/zzz_config.d.ts', default: './dist/zzz_config.js'},
-		'./Zzz_Docs.svelte': {
-			types: './dist/Zzz_Docs.svelte.d.ts',
-			svelte: './dist/Zzz_Docs.svelte',
-			default: './dist/Zzz_Docs.svelte',
-		},
 		'./Zzz_Root.svelte': {
 			types: './dist/Zzz_Root.svelte.d.ts',
 			svelte: './dist/Zzz_Root.svelte',
@@ -1003,7 +999,6 @@ export const src_json = {
 			path: 'zzz_config.ts',
 			declarations: [{name: 'zzz_config', kind: 'variable'}],
 		},
-		'./Zzz_Docs.svelte': {path: 'Zzz_Docs.svelte', declarations: []},
 		'./Zzz_Root.svelte': {path: 'Zzz_Root.svelte', declarations: []},
 		'./zzz.svelte.js': {
 			path: 'zzz.svelte.ts',

@@ -1,6 +1,7 @@
 <script lang="ts">
+	import Code from '@ryanatkn/fuz_code/Code.svelte';
 	import Tooltip from '$lib/Tooltip.svelte';
-	import {GLYPH_CHECK, GLYPH_REMOVE, GLYPH_FILE} from '$lib/glyphs.js';
+	import {GLYPH_CHECK, GLYPH_FILE} from '$lib/glyphs.js';
 	import Tome_Content from '@ryanatkn/fuz/Tome_Content.svelte';
 	import {get_tome_by_name} from '@ryanatkn/fuz/tome.js';
 
@@ -9,19 +10,23 @@
 
 <Tome_Content {tome}>
 	<h1 class="size_xl mb_md">Tooltip</h1>
-	
+
 	<p class="mb_md">
-		Tooltips provide additional information when hovering over or focusing on an element.
-		They follow <a href="https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/" target="_blank" rel="noopener noreferrer">WAI-ARIA tooltip pattern</a> for accessibility.
+		Tooltips provide additional information when hovering over or focusing on an element. They
+		follow <a
+			href="https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/"
+			target="_blank"
+			rel="noopener noreferrer">WAI-ARIA tooltip pattern</a
+		> for accessibility.
 	</p>
-	
+
 	<div class="import_example p_sm bg_2 radius_sm mb_lg">
-		<pre><code>import Tooltip from '$lib/Tooltip.svelte';</code></pre>
+		<Code content="import Tooltip from '$lib/Tooltip.svelte';" />
 	</div>
-	
+
 	<section class="mb_xl">
 		<h2 class="size_lg mb_md">Examples</h2>
-		
+
 		<div class="example_grid">
 			<div class="example p_md bg_2 radius_sm">
 				<h3 class="size_md mb_xs">Basic Tooltip</h3>
@@ -33,17 +38,19 @@
 						<button type="button" class="plain">Hover me</button>
 					</Tooltip>
 				</div>
-				
-				<pre class="code_block p_sm bg_1"><code>&lt;Tooltip position="top"&gt;
+
+				<Code
+					content={`<Tooltip position="top">
   {#snippet content()}
     Simple tooltip content
   {/snippet}
-  &lt;button type="button" class="plain"&gt;
+  <button type="button" class="plain">
     Hover me
-  &lt;/button&gt;
-&lt;/Tooltip&gt;</code></pre>
+  </button>
+</Tooltip>`}
+				/>
 			</div>
-			
+
 			<div class="example p_md bg_2 radius_sm">
 				<h3 class="size_md mb_xs">Custom Background</h3>
 				<div class="example_demo mb_sm p_md flex justify_content_center align_items_center">
@@ -54,17 +61,19 @@
 						<button type="button" class="plain">Custom background</button>
 					</Tooltip>
 				</div>
-				
-				<pre class="code_block p_sm bg_1"><code>&lt;Tooltip position="right" bg="bg_h_1"&gt;
+
+				<Code
+					content={`<Tooltip position="right" bg="bg_h_1">
   {#snippet content()}
-    &lt;span class="color_h"&gt;Custom&lt;/span&gt; tooltip
+    <span class="color_h">Custom</span> tooltip
   {/snippet}
-  &lt;button type="button" class="plain"&gt;
+  <button type="button" class="plain">
     Custom background
-  &lt;/button&gt;
-&lt;/Tooltip&gt;</code></pre>
+  </button>
+</Tooltip>`}
+				/>
 			</div>
-			
+
 			<div class="example p_md bg_2 radius_sm">
 				<h3 class="size_md mb_xs">Rich Content</h3>
 				<div class="example_demo mb_sm p_md flex justify_content_center align_items_center">
@@ -79,19 +88,21 @@
 						<button type="button" class="plain icon_button">{GLYPH_FILE}</button>
 					</Tooltip>
 				</div>
-				
-				<pre class="code_block p_sm bg_1"><code>&lt;Tooltip position="bottom"&gt;
+
+				<Code
+					content={`<Tooltip position="bottom">
   {#snippet content()}
-    &lt;div class="p_xs"&gt;
-      &lt;div class="mb_xs2 font_weight_600"&gt;File details:&lt;/div&gt;
-      &lt;div class="size_xs"&gt;Created: Today&lt;/div&gt;
-      &lt;div class="size_xs"&gt;Size: 1.2 MB&lt;/div&gt;
-    &lt;/div&gt;
+    <div class="p_xs">
+      <div class="mb_xs2 font_weight_600">File details:</div>
+      <div class="size_xs">Created: Today</div>
+      <div class="size_xs">Size: 1.2 MB</div>
+    </div>
   {/snippet}
-  &lt;button type="button" class="plain icon_button"&gt;{GLYPH_FILE}&lt;/button&gt;
-&lt;/Tooltip&gt;</code></pre>
+  <button type="button" class="plain icon_button">{GLYPH_FILE}</button>
+</Tooltip>`}
+				/>
 			</div>
-			
+
 			<div class="example p_md bg_2 radius_sm">
 				<h3 class="size_md mb_xs">Transparent Background</h3>
 				<div class="example_demo mb_sm p_md flex justify_content_center align_items_center">
@@ -102,19 +113,21 @@
 						<button type="button" class="plain">No delay</button>
 					</Tooltip>
 				</div>
-				
-				<pre class="code_block p_sm bg_1"><code>&lt;Tooltip position="left" bg={null} delay={0}&gt;
+
+				<Code
+					content={`<Tooltip position="left" bg={null} delay={0}>
   {#snippet content()}
-    &lt;div class="p_xs2 bg_e_1 radius_xs"&gt;
+    <div class="p_xs2 bg_e_1 radius_xs">
       No background on container
-    &lt;/div&gt;
+    </div>
   {/snippet}
-  &lt;button type="button" class="plain"&gt;
+  <button type="button" class="plain">
     No delay
-  &lt;/button&gt;
-&lt;/Tooltip&gt;</code></pre>
+  </button>
+</Tooltip>`}
+				/>
 			</div>
-			
+
 			<div class="example p_md bg_2 radius_sm">
 				<h3 class="size_md mb_xs">With Icon</h3>
 				<div class="example_demo mb_sm p_md flex justify_content_center align_items_center">
@@ -125,15 +138,17 @@
 						<span class="color_h">{GLYPH_CHECK}</span>
 					</Tooltip>
 				</div>
-				
-				<pre class="code_block p_sm bg_1"><code>&lt;Tooltip position="top"&gt;
+
+				<Code
+					content={`<Tooltip position="top">
   {#snippet content()}
     Success action completed
   {/snippet}
-  &lt;span class="color_h"&gt;{GLYPH_CHECK}&lt;/span&gt;
-&lt;/Tooltip&gt;</code></pre>
+  <span class="color_h">{GLYPH_CHECK}</span>
+</Tooltip>`}
+				/>
 			</div>
-			
+
 			<div class="example p_md bg_2 radius_sm">
 				<h3 class="size_md mb_xs">Custom Delay</h3>
 				<div class="example_demo mb_sm p_md flex justify_content_center align_items_center">
@@ -144,22 +159,24 @@
 						<button type="button" class="plain">Hover for 1 second</button>
 					</Tooltip>
 				</div>
-				
-				<pre class="code_block p_sm bg_1"><code>&lt;Tooltip position="bottom" delay={1000}&gt;
+
+				<Code
+					content={`<Tooltip position="bottom" delay={1000}>
   {#snippet content()}
     This tooltip has a 1-second delay
   {/snippet}
-  &lt;button type="button" class="plain"&gt;
+  <button type="button" class="plain">
     Hover for 1 second
-  &lt;/button&gt;
-&lt;/Tooltip&gt;</code></pre>
+  </button>
+</Tooltip>`}
+				/>
 			</div>
 		</div>
 	</section>
-	
+
 	<section class="mb_xl">
 		<h2 class="size_lg mb_md">Props</h2>
-		
+
 		<div class="table_wrapper">
 			<table class="w_100">
 				<thead>
@@ -186,7 +203,7 @@
 					<tr>
 						<td>tooltip_attrs</td>
 						<td>SvelteHTMLElements['div']</td>
-						<td>{}</td>
+						<td>{'{'}}</td>
 						<td>HTML attributes for the tooltip container</td>
 					</tr>
 					<tr>
@@ -217,14 +234,12 @@
 			</table>
 		</div>
 	</section>
-	
+
 	<section class="mb_xl">
 		<h2 class="size_lg mb_md">Accessibility</h2>
-		
-		<p class="mb_md">
-			The Tooltip component follows WAI-ARIA patterns:
-		</p>
-		
+
+		<p class="mb_md">The Tooltip component follows WAI-ARIA patterns:</p>
+
 		<ul>
 			<li>Uses <code>role="tooltip"</code> for the tooltip element</li>
 			<li>Connects to its trigger with <code>aria-describedby</code></li>
@@ -241,41 +256,33 @@
 		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 		gap: var(--space_md);
 	}
-	
+
 	.example_demo {
 		border: 1px dashed var(--border_color_1);
 		border-radius: var(--radius_xs);
 		min-height: 60px;
 	}
-	
-	.code_block {
-		overflow: auto;
-		max-height: 200px;
-		font-size: var(--size_xs);
-		font-family: var(--font_mono);
-		border-radius: var(--radius_xs);
-		margin: 0;
-	}
-	
+
 	.table_wrapper {
 		overflow-x: auto;
 	}
-	
+
 	table {
 		border-collapse: collapse;
 	}
-	
-	th, td {
+
+	th,
+	td {
 		padding: var(--space_xs);
 		text-align: left;
 		border-bottom: 1px solid var(--border_color_1);
 	}
-	
+
 	th {
 		font-weight: 600;
 		background-color: var(--bg_color_2);
 	}
-	
+
 	code {
 		font-family: var(--font_mono);
 		font-size: 0.9em;

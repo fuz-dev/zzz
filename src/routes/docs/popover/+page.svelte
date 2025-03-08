@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Code from '@ryanatkn/fuz_code/Code.svelte';
 	import Popover from '$lib/Popover.svelte';
 	import {
 		GLYPH_REMOVE,
@@ -27,7 +28,7 @@
 	</p>
 
 	<div class="import_example p_sm bg_2 radius_sm mb_lg">
-		<pre><code>import Popover from '$lib/Popover.svelte';</code></pre>
+		<Code content="import Popover from '$lib/Popover.svelte';" />
 	</div>
 
 	<section class="mb_xl">
@@ -54,25 +55,23 @@
 					</Popover>
 				</div>
 
-				<pre class="code_block p_sm bg_1"><code
-						>&lt;Popover position="bottom"&gt;
-            {'{'}#snippet trigger(is_open, toggle)}
-							&lt;button type="button" class="plain" onclick={'{'}toggle}&gt;
-      Toggle Menu {'{'}is_open
-								? GLYPH_ARROW_UP
-								: GLYPH_ARROW_DOWN}
-    &lt;/button&gt;
-    {'{'}/snippet}
+				<Code
+					content={`<Popover position="bottom">
+  {#snippet trigger(is_open, toggle)}
+    <button type="button" class="plain" onclick={toggle}>
+      Toggle Menu {is_open ? GLYPH_ARROW_UP : GLYPH_ARROW_DOWN}
+    </button>
+  {/snippet}
   
-            {'{'}#snippet children(params)}
-							&lt;div class="p_xs"&gt;
-      &lt;button type="button" class="plain w_100 text_align_left"&gt;Menu Item 1&lt;/button&gt;
-      &lt;button type="button" class="plain w_100 text_align_left"&gt;Menu Item 2&lt;/button&gt;
-      &lt;button type="button" class="plain w_100 text_align_left"&gt;Menu Item 3&lt;/button&gt;
-    &lt;/div&gt;
-    {'{'}/snippet}
-&lt;/Popover&gt;</code
-					></pre>
+  {#snippet children(params)}
+    <div class="p_xs">
+      <button type="button" class="plain w_100 text_align_left">Menu Item 1</button>
+      <button type="button" class="plain w_100 text_align_left">Menu Item 2</button>
+      <button type="button" class="plain w_100 text_align_left">Menu Item 3</button>
+    </div>
+  {/snippet}
+</Popover>`}
+				/>
 			</div>
 
 			<div class="example p_md bg_2 radius_sm">
@@ -113,43 +112,41 @@
 					</Popover>
 				</div>
 
-				<pre class="code_block p_sm bg_1"><code
-						>&lt;Popover position="right"&gt;
-  {'{'}#snippet trigger(is_open, toggle)}
-							&lt;button type="button" class="plain" onclick={'{'}toggle}&gt;
-      Actions {'{'}is_open
-								? GLYPH_ARROW_UP
-								: GLYPH_ARROW_DOWN}
-    &lt;/button&gt;
-    {'{'}/snippet}
+				<Code
+					content={`<Popover position="right">
+  {#snippet trigger(is_open, toggle)}
+    <button type="button" class="plain" onclick={toggle}>
+      Actions {is_open ? GLYPH_ARROW_UP : GLYPH_ARROW_DOWN}
+    </button>
+  {/snippet}
   
-  {'{'}#snippet children(params)}
-							&lt;div class="p_xs"&gt;
-      &lt;button
+  {#snippet children(params)}
+    <div class="p_xs">
+      <button
         type="button"
         class="plain w_100 text_align_left"
-        onclick={'{'}() => {'{'}
-								someAction();
-								params.toggle(); // Close popover after action
-							}}
-      &gt;
-        &lt;span class="color_h"&gt;{'{'}GLYPH_CHECK}&lt;/span&gt; Approve
-      &lt;/button&gt;
-      &lt;button
+        onclick={() => {
+          someAction();
+          params.toggle(); // Close popover after action
+        }}
+      >
+        <span class="color_h">{GLYPH_CHECK}</span> Approve
+      </button>
+      <button
         type="button"
         class="plain w_100 text_align_left color_c"
-        onclick={'{'}() => {'{'}
-								params.toggle(); // Close popover after action
-							}}
-      &gt;
-      {'{'}GLYPH_REMOVE} Reject
-      &lt;/button&gt;
-      &lt;div class="border_bottom_solid border_width_1 border_color_1 my_xs"&gt;&lt;/div&gt;
-      &lt;button type="button" class="plain w_100 text_align_left"&gt;View Details&lt;/button&gt;
-    &lt;/div&gt;
-    {'{'}/snippet}
-&lt;/Popover&gt;</code
-					></pre>
+        onclick={() => {
+          params.toggle(); // Close popover after action
+        }}
+      >
+        {GLYPH_REMOVE} Reject
+      </button>
+      <div class="border_bottom_solid border_width_1 border_color_1 my_xs"></div>
+      <button type="button" class="plain w_100 text_align_left">View Details</button>
+    </div>
+  {/snippet}
+</Popover>`}
+				/>
 			</div>
 
 			<div class="example p_md bg_2 radius_sm">
@@ -173,24 +170,24 @@
 					</Popover>
 				</div>
 
-				<pre class="code_block p_sm bg_1"><code
-						>&lt;Popover position="top" bg="bg_h_1"&gt;
-  {'{'}#snippet trigger(is_open, toggle)}
-							&lt;button type="button" class="plain" onclick={'{'}toggle}&gt;
-      Custom Style {'{'}is_open ? GLYPH_ARROW_UP : GLYPH_ARROW_DOWN}
-    &lt;/button&gt;
-						{'{'}/snippet}
+				<Code
+					content={`<Popover position="top" bg="bg_h_1">
+  {#snippet trigger(is_open, toggle)}
+    <button type="button" class="plain" onclick={toggle}>
+      Custom Style {is_open ? GLYPH_ARROW_UP : GLYPH_ARROW_DOWN}
+    </button>
+  {/snippet}
   
-  {'{'}#snippet children(params)}
-							&lt;div class="p_xs"&gt;
-      &lt;p class="mb_xs color_h"&gt;Custom styled popover&lt;/p&gt;
-      &lt;button type="button" class="plain w_100 mt_xs" onclick={'{'}params.toggle}&gt;
+  {#snippet children(params)}
+    <div class="p_xs">
+      <p class="mb_xs color_h">Custom styled popover</p>
+      <button type="button" class="plain w_100 mt_xs" onclick={params.toggle}>
         Close
-      &lt;/button&gt;
-    &lt;/div&gt;
-						{'{'}/snippet}
-&lt;/Popover&gt;</code
-					></pre>
+      </button>
+    </div>
+  {/snippet}
+</Popover>`}
+				/>
 			</div>
 
 			<div class="example p_md bg_2 radius_sm">
@@ -214,8 +211,13 @@
 							<div class="p_xs">
 								<p class="mb_sm">This won't auto-close when clicked</p>
 								<form class="mb_sm">
-									<label class="size_xs">Example form:</label>
-									<input type="text" class="plain w_100 mb_xs" placeholder="Input field" />
+									<label for="popover-input" class="size_xs">Example form:</label>
+									<input
+										id="popover-input"
+										type="text"
+										class="plain w_100 mb_xs"
+										placeholder="Input field"
+									/>
 									<button type="button" class="plain w_100">Submit</button>
 								</form>
 								<button type="button" class="plain w_100 mt_xs" onclick={params.toggle}>
@@ -226,35 +228,35 @@
 					</Popover>
 				</div>
 
-				<pre class="code_block p_sm bg_1"><code
-						>&lt;Popover 
+				<Code
+					content={`<Popover 
   position="left"
-  popover_attrs={'{'}{'{'}
-							onclick: (e) => e.stopPropagation(),
-							style: 'min-width: 200px;',
-						}}
-&gt;
-  {'{'}#snippet trigger(is_open, toggle)}
-							&lt;button type="button" class="plain" onclick={'{'}toggle}&gt;
-      Persistent Menu {'{'}is_open ? GLYPH_ARROW_UP : GLYPH_ARROW_DOWN}
-    &lt;/button&gt;
-						{'{'}/snippet}
+  popover_attrs={{
+    onclick: (e) => e.stopPropagation(),
+    style: 'min-width: 200px;'
+  }}
+>
+  {#snippet trigger(is_open, toggle)}
+    <button type="button" class="plain" onclick={toggle}>
+      Persistent Menu {is_open ? GLYPH_ARROW_UP : GLYPH_ARROW_DOWN}
+    </button>
+  {/snippet}
   
-  {'{'}#snippet children(params)}
-							&lt;div class="p_xs"&gt;
-      &lt;p class="mb_sm"&gt;This won't auto-close when clicked&lt;/p&gt;
-      &lt;form class="mb_sm"&gt;
-        &lt;label class="size_xs"&gt;Example form:&lt;/label&gt;
-        &lt;input type="text" class="plain w_100 mb_xs" placeholder="Input field" /&gt;
-        &lt;button type="button" class="plain w_100"&gt;Submit&lt;/button&gt;
-      &lt;/form&gt;
-      &lt;button type="button" class="plain w_100 mt_xs" onclick={'{'}params.toggle}&gt;
+  {#snippet children(params)}
+    <div class="p_xs">
+      <p class="mb_sm">This won't auto-close when clicked</p>
+      <form class="mb_sm">
+        <label for="popover-input" class="size_xs">Example form:</label>
+        <input id="popover-input" type="text" class="plain w_100 mb_xs" placeholder="Input field" />
+        <button type="button" class="plain w_100">Submit</button>
+      </form>
+      <button type="button" class="plain w_100 mt_xs" onclick={params.toggle}>
         Close Menu
-      &lt;/button&gt;
-    &lt;/div&gt;
-						{'{'}/snippet}
-&lt;/Popover&gt;</code
-					></pre>
+      </button>
+    </div>
+  {/snippet}
+</Popover>`}
+				/>
 			</div>
 
 			<div class="example p_md bg_2 radius_sm">
@@ -286,27 +288,27 @@
 					</Popover>
 				</div>
 
-				<pre class="code_block p_sm bg_1"><code
-						>&lt;Popover position="bottom"&gt;
-  {'{'}#snippet trigger(is_open, toggle)}
-							&lt;button type="button" class="plain icon_button" onclick={'{'}toggle} aria-label="Open file menu"&gt;
+				<Code
+					content={`<Popover position="bottom">
+  {#snippet trigger(is_open, toggle)}
+    <button type="button" class="plain icon_button" onclick={toggle} aria-label="Open file menu">
       {GLYPH_FILE}
-    &lt;/button&gt;
-						{'{'}/snippet}
+    </button>
+  {/snippet}
   
-  {'{'}#snippet children(params)}
-							&lt;div class="p_xs"&gt;
-      &lt;div class="mb_xs font_weight_600"&gt;File.txt&lt;/div&gt;
-      &lt;div class="size_xs mb_xs"&gt;Last modified: Today&lt;/div&gt;
-      &lt;div class="flex gap_xs mt_xs"&gt;
-        &lt;button type="button" class="plain flex_1"&gt;Open&lt;/button&gt;
-        &lt;button type="button" class="plain flex_1"&gt;Download&lt;/button&gt;
-        &lt;button type="button" class="plain flex_1 color_c"&gt;Delete&lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-						{'{'}/snippet}
-&lt;/Popover&gt;</code
-					></pre>
+  {#snippet children(params)}
+    <div class="p_xs">
+      <div class="mb_xs font_weight_600">File.txt</div>
+      <div class="size_xs mb_xs">Last modified: Today</div>
+      <div class="flex gap_xs mt_xs">
+        <button type="button" class="plain flex_1">Open</button>
+        <button type="button" class="plain flex_1">Download</button>
+        <button type="button" class="plain flex_1 color_c">Delete</button>
+      </div>
+    </div>
+  {/snippet}
+</Popover>`}
+				/>
 			</div>
 
 			<div class="example p_md bg_2 radius_sm">
@@ -326,22 +328,22 @@
 					</Popover>
 				</div>
 
-				<pre class="code_block p_sm bg_1"><code
-						>&lt;Popover position="bottom" bg={null}&gt;
-  {'{'}#snippet trigger(is_open, toggle)}
-							&lt;button type="button" class="plain" onclick={'{'}toggle}&gt;
+				<Code
+					content={`<Popover position="bottom" bg={null}>
+  {#snippet trigger(is_open, toggle)}
+    <button type="button" class="plain" onclick={toggle}>
       Custom Container
-    &lt;/button&gt;
-						{'{'}/snippet}
+    </button>
+  {/snippet}
   
-  {'{'}#snippet children(params)}
-							&lt;div class="p_xs2 bg_e_1 radius_md"&gt;
-      &lt;p class="mb_xs"&gt;Custom container with transparent popover wrapper&lt;/p&gt;
-      &lt;button type="button" class="plain" onclick={'{'}params.toggle}&gt;Close&lt;/button&gt;
-    &lt;/div&gt;
-						{'{'}/snippet}
-&lt;/Popover&gt;</code
-					></pre>
+  {#snippet children(params)}
+    <div class="p_xs2 bg_e_1 radius_md">
+      <p class="mb_xs">Custom container with transparent popover wrapper</p>
+      <button type="button" class="plain" onclick={params.toggle}>Close</button>
+    </div>
+  {/snippet}
+</Popover>`}
+				/>
 			</div>
 		</div>
 	</section>
@@ -375,7 +377,7 @@
 					<tr>
 						<td>popover_attrs</td>
 						<td>SvelteHTMLElements['div']</td>
-						<td>{'{'}}</td>
+						<td>{'{}'}</td>
 						<td>HTML attributes for the popover container</td>
 					</tr>
 					<tr>
@@ -439,23 +441,23 @@
 			</table>
 		</div>
 
-		<pre class="code_block p_sm bg_1 mt_md"><code
-				>// Using methods via bind:
-&lt;Popover bind:controls position="bottom"&gt;
-{'{'}#snippet trigger(is_open, toggle)}
-    &lt;button type="button" class="plain" onclick={'{'}toggle}&gt;Toggle&lt;/button&gt;
-{'{'}/snippet}
+		<Code
+			content={`// Using methods via bind:
+<Popover bind:controls position="bottom">
+  {#snippet trigger(is_open, toggle)}
+    <button type="button" class="plain" onclick={toggle}>Toggle</button>
+  {/snippet}
   
-{'{'}#snippet children(params)}
-&lt;div class="p_xs"&gt;Popover content&lt;/div&gt;
-{'{'}/snippet}
-&lt;/Popover&gt;
+  {#snippet children(params)}
+    <div class="p_xs">Popover content</div>
+  {/snippet}
+</Popover>
 
 // Then later:
 controls.open();   // Open programmatically
 controls.close();  // Close programmatically
-controls.toggle(); // Toggle state</code
-			></pre>
+controls.toggle(); // Toggle state`}
+		/>
 	</section>
 
 	<section class="mb_xl">
@@ -496,15 +498,6 @@ controls.toggle(); // Toggle state</code
 		border: 1px dashed var(--border_color_1);
 		border-radius: var(--radius_xs);
 		min-height: 60px;
-	}
-
-	.code_block {
-		overflow: auto;
-		max-height: 200px;
-		font-size: var(--size_xs);
-		font-family: var(--font_mono);
-		border-radius: var(--radius_xs);
-		margin: 0;
 	}
 
 	.table_wrapper {
